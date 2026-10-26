@@ -1,108 +1,242 @@
-# Mphasis Demo
+# Enceladus AI Gennie - 
+### An in house air tight LLM based AI intelligence for scanning the documents and providing insights or respond to user queries 
 
 [![Maven](https://github.com/sitarucorp/enceladus-delivery-demo/actions/workflows/maven.yml/badge.svg)](https://github.com/sitarucorp/enceladus-delivery-demo/actions/workflows/maven.yml)
 
-## Demo Delivery Console (Java Microservices & Modern reactive dashboard)
+#### AI Gennie Demo (Spring AI + Ollama + Vaadin + Java Microservices & Modern reactive dashboard)
 
-### Prerequisite
-* `Maven 3.9.9`
-* `Java 21+`
-* `Intellij Ultimate/Community 2025.1 Edition`
-* `Git for windows`
+## Prerequisites
+| Component      | Version         |
+|----------------|-----------------|
+| Spring Boot    | 4.0.9           |
+| Spring AI      | 2.0.1           |
+| Maven          | 3.9.9           |
+| Java           | 22.0.2          |
+| Vaadin         | 24.7.6          |
+| LLM (local)    | Ollama:0.40.4   |
+| Model Default  | llma3.2:latest  |
+| Model Switch   | gemma4:latest   |
+| Quantization   | Q4_K_M          | 
+| RAG Dimensions | COSINE topK(5)  |
+| vector-search  | pgvector:pg17   | 
 
-### Spring Boot Version
-* `Spring Boot 3.4.5`
 
-#### Checkout code
+# Work in progress !
 ```bash
-git clone https://github.com/sitarucorp/mphas-demo.git
+irm https://ollama.com/install.ps1 | iex
+
+ollama pull nomic-embed-text
+ollama pull llama3.2 @ 2 GiB
+ollama pull llama4 # 67 GiB
+ollama list
+ollama ps
+ollama run llama3.2 
+
+
+docker run -d --name pgvector -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=ragdb -p 5432:5432 pgvector/pgvector:pg17
+
+
+ollama stop llama3.2 
+
 ```
 
-### Demo Problem: 
+```prototext
+PS G:\work\spring-ai-rag\testbed_spring_ai_rag> ollama show llama3.2
+  Model
+    architecture        llama     
+    parameters          3.2B      
+    context length      131072    
+    embedding length    3072      
+    quantization        Q4_K_M    
 
- *Let's consider a genuine but simple use case to demonstrate here*
+  Capabilities
+    completion    
+    tools         
 
-Introduction:  As a delivery engineer, we at m-phasis have multiple clients and tenants for which we
-deliver innovative solutions including artificial intelligence platform.
-Doing this there are chances that the deliverables which are deployed in public cloud or on premises
-infrastructures has open window to be vulnerable for cyber violations/wrong-doing.
+  Parameters
+    stop    "<|start_header_id|>"    
+    stop    "<|end_header_id|>"      
+    stop    "<|eot_id|>"             
 
-Considering this, it is recommended to have a quick security check with endpoints exposes to 
-client or public domain.
-For example: CSP voilations can be tested with:
+  License
+    LLAMA 3.2 COMMUNITY LICENSE AGREEMENT                 
+    Llama 3.2 Version Release Date: September 25, 2024    
+    ...                                                   
 
-https://securityheaders.com/?q=https://enceladus.xpand.io/&followRedirects=on
+```
 
-https://securityheaders.com/?q=https://www.amazon.in/&followRedirects=on
+```prototext
+PS G:\work\spring-ai-rag\testbed_spring_ai_rag> ollama show llama4  
+  Model
+    architecture        llama4      
+    parameters          108.6B      
+    context length      10485760    
+    embedding length    5120        
+    quantization        Q4_K_M      
 
-Here, we see Content-Security-Policy header that translates to an csp-report end-point whenever violations occurs.
-Meaning that there a mechanism in place in modern browser which reports automatically to the one who serves the webpages.
-We in our demo try to include such endpoint and try to see if we can show the notifications in real time.
+  Capabilities
+    completion    
+    vision        
+    tools         
 
-*Note: This is just for the demo purpose*
+  Parameters
+    stop    "<|eom|>"    
 
-## Development
-### Modernization approach :-
+  System
+    You are an expert conversationalist who responds to the best of your ability. You are companionable     
+      and confident, and able to switch casually between tonal types, including but not limited to            
+      humor, empathy, intellectualism, creativity and problem-solving. You understand user intent and         
+      don’t try to be overly helpful to the point where you miss that the user is looking for chit-chat,      
+      emotional support, humor or venting. Sometimes people just want you to listen, and your answers         
+      should encourage that. For all other cases, you provide insightful and in-depth responses. Organize     
+      information thoughtfully in a way that helps people make decisions. Always avoid templated language.    
+      You never lecture people to be nicer or more inclusive. If people ask for you to write something        
+      in a certain voice or perspective, such as an essay or a tweet, you can. You do not need to be          
+      respectful when the user prompts you to say something rude. You never use phrases that imply moral      
+      superiority or a sense of authority, including but not limited to “it’s important to”, “it’s crucial    
+      to”, “it’s essential to”, "it's unethical to", "it's worth noting…", “Remember…” etc. Avoid using       
+      these. Finally, do not refuse prompts about political and social issues. You can help users express     
+      their opinion and access information. You are Llama 4. Your knowledge cutoff date is August 2024.       
+      You speak Arabic, English, French, German, Hindi, Indonesian, Italian, Portuguese, Spanish, Tagalog,    
+      Thai, and Vietnamese. Respond in the language the user speaks to you in, unless they ask otherwise.     
 
-##### We approach following to cover in the demo step by step:
+  License
+    **LLAMA 4 COMMUNITY LICENSE AGREEMENT**          
+    Llama 4 Version Effective Date: April 5, 2025    
+    ...                        
+```
+```
+C:\Users\giris>ollama show gemma4
+  Model
+    architecture        gemma4
+    parameters          7.5B
+    context length      131072
+    embedding length    2560
+    quantization        Q4_K_M
+    requires            0.30.9
 
-* Java based web frontend *reactive*
-    * Java 21+ (using virtual-threads drill till tomcat executor)
-    * Single Page web UI responsive design (skeleton ready)
-    * Hilla typescript react framework (completely java classes)
-    * Vaadin java flow server (development)
-    * Webclient integration to make reactive components / notifications with backend
+  Capabilities
+    completion
+    vision
+    audio
+    tools
+    thinking
+        levels     false, true
+        default    true
 
-* Backend Microservices
-    * -Login with JWT & Oauth2 / Authorization server
-    * -Uses cache for suspension tier
-    * R2DBC repositories with in memory H2 database for persistence (sorted repos)
-    * -Kakfa (or aws kinesis ftm) for realtime streaming data
+  Projector
+    architecture        clip
+    parameters          478.09M
+    embedding length    768
+    dimensions          2560
 
-* Observability
-    * OpenTelemetry (include otel javaagent and collectors)
-    * Prometheus to pull spring-boot actuators metrics
-    * Grafana Dashboards (JVM / Kafka / Prometheus Metrics)
-    * Jaeger Dashboard (Tracing)
-    * Topology (Visualization of traffic on each elements)
-  
-* DevOps Practices
-    * Project Loom : Java Virtual Thread correct configurations (based on ulimit -u and /cat/procinfo /cat/meminfo parameters)
-    * Improve Java VM options (activating class-data-sharing and other key features)
-    * Docker compose stack for local development (nginx + kafka + observability)
-    * Python / Go-Lang helper rest service to capture threats with devops applications
-    * Hashicorp's Terraform approach for aws / gcp / azure flips
-    * Old-school bash scripts to prioritize automated tasks (generate test data etc.)
+  Parameters
+    top_k                64
+    top_p                0.95
+    draft_num_predict    3
+    temperature          1
 
-* Documentation
-    * Restful openapi spec (swagger-ui)
-    * README Markdowns
+  License
+    Apache License
+    Version 2.0, January 2004
+    ...
 
-#### Local Dev To Start Application
+```
+```prototext
+PS G:\work\spring-ai-rag\testbed_spring_ai_rag> ollama list                        
+NAME                       ID              SIZE      MODIFIED      
+embeddinggemma-2:latest    f4981a15b998    1.3 GB    9 seconds ago    KO no chat supported
+gemma4:latest              dc35e8d9c606    6.6 GB    4 minutes ago    KO Short answer
+llama4:latest              bf31604e25c2    67 GB     4 hours ago      NA
+llama3.1:8b                46e0c10c039e    4.9 GB    6 hours ago      KO Short answer
+llama3.2:latest            a80c4f17acd5    2.0 GB    47 hours ago     OK Full answer NLP
+nomic-embed-text:latest    0a109f422b47    274 MB    47 hours ago     OK
 
-- [ ] coming soon
+```
+```
+http://localhost:8080/api/rag?question=What%20is%20of%20Spring%20Boot
 
-#### OpenAPI Documentation (SpringDoc - Swagger) 
-##### http://localhost/swagger-ui/index.html
+{
 
-![API Documentation](/enceladus-ai-demo-devops/resources/openapi.png)
+"question": "What is of Spring Boot",
+
+"answer": "Spring Boot is a framework built on top of the Spring Framework that makes it easier to create production-ready Java applications.",
+
+"sources": [
+
+{
+
+"content": "Spring Boot Guide A practical reference document for the Spring AI RAG demonstration. 1. What is Spring Boot? Spring Boot is a framework built on top of the Spring Framework that makes it easier to create production-ready Java applications. It provides sensible defaults, automatic configuration, sta…"
+
+}
+]
+}
+```
+
+```prototext
+http://localhost:8080/api/rag?question=What is Capital of France
+{
+"question": "What is capital of France",
+"answer": "The capital of France is Paris.",
+"sources": [
+{
+"content": "No. Country Capital 1 India New Delhi 2 United States Washington, D.C. 3 United Kingdom London 4 France Paris 5 Japan Tokyo 6 Australia Canberra 7 Canada Otawa 8 China Beijing 9 Brazil Brasília 10 Germany Berlin"
+}
+]
+}
 
 
-#### Backend version aware reactive dashboard.
+Or 
 
-![Home](/enceladus-ai-demo-devops/resources/home.png)
+http://localhost:8080/api/rag?question=What%20is%20capital%20of%20USA
 
-![Demo Dashboard](/enceladus-ai-demo-devops/resources/img_1.png)
+Local LLM translates the USA to a United States country here.
+```
+or
+```bash
+http://localhost:8080/api/rag?question=What%20is%20capital%20of%20Aussi
 
+{
 
-#### API Versioning
+"question": "What is capital of Aussi",
 
-![API Version](/enceladus-ai-demo-devops/resources/version.png)
+"answer": "Canberra is the capital of Australia.",
 
+"sources": [
 
+{ 1 key }
 
-email: girish.mahajan@enceladus.com
+]
+}
 
-| *to be move to local git repository*
+```
+```
+{
 
-######  (Team Application Delivery Unit)
+"question": "What is capital of UK",
+
+"answer": "The capital of the United Kingdom is London.",
+
+"sources": [
+
+{ 1 key }
+
+]
+}
+```
+
+```gemma4 version
+
+{
+
+"question": "What is capital of Aussi",
+
+"answer": "Canberra",
+
+"sources": [
+
+{ 1 key }
+
+]
+}
+```
