@@ -1,7 +1,7 @@
 # Enceladus AI Gennie - 
 ### An in house air tight LLM based AI intelligence for scanning the documents and providing insights or respond to user queries 
 
-[![Maven](https://github.com/sitarucorp/enceladus-delivery-demo/actions/workflows/maven.yml/badge.svg)](https://github.com/sitarucorp/enceladus-delivery-demo/actions/workflows/maven.yml)
+[![Maven](https://github.com/sitarucorp/enceladus-ai-gennie/actions/workflows/maven.yml/badge.svg)](https://github.com/sitarucorp/enceladus-ai-gennie/actions/workflows/maven.yml)
 
 #### AI Gennie Demo (Spring AI + Ollama + Vaadin + Java Microservices & Modern reactive dashboard)
 
