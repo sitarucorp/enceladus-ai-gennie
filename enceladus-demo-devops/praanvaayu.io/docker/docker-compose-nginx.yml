@@ -1,0 +1,8 @@
+services:
+  nginx:
+    image: nginx:stable
+    volumes:
+      - ./enceladus-ai-demo-devops/praanvaayu.io/nginx/html/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./enceladus-ai-demo-devops/praanvaayu.io/nginx/html:/usr/share/nginx/html
+    ports:
+      - "80:80"

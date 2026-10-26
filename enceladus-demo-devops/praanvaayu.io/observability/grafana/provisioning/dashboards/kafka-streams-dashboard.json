@@ -1,0 +1,37 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Kafka Streams Metrics",
+    "tags": ["kafka", "streams"],
+    "timezone": "browser",
+    "schemaVersion": 30,
+    "version": 1,
+    "panels": [
+      {
+        "type": "graph",
+        "title": "Processed Records",
+        "targets": [
+          {
+            "expr": "kafka_stream_processor_records_total",
+            "format": "time_series",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"x": 0, "y": 0, "w": 24, "h": 8}
+      },
+      {
+        "type": "graph",
+        "title": "Stream Lag",
+        "targets": [
+          {
+            "expr": "kafka_stream_processor_lag",
+            "format": "time_series",
+            "refId": "B"
+          }
+        ],
+        "gridPos": {"x": 0, "y": 9, "w": 24, "h": 8}
+      }
+    ]
+  },
+  "overwrite": true
+}

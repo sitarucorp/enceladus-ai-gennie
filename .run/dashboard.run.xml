@@ -1,0 +1,23 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="dashboard" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="Praanvaayu-Development">
+    <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    <module name="enceladus-ai-demo-dashboard" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.enceladus.delivery.dashboard.DashboardApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+  <configuration default="false" name="dashboard" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.enceladus.delivery.dashboard.DashboardApplication" />
+    <module name="enceladus-ai-demo-dashboard" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.enceladus.delivery.dashboard.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,0 +1,146 @@
+<project xmlns='http://maven.apache.org/POM/4.0.0'
+         xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+         xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd'>
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.4.5</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <groupId>com.enceladus.ai</groupId>
+  <artifactId>enceladus-ai-gennie</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <description>Demo project for Java microservice with modernization</description>
+  <packaging>pom</packaging>
+
+  <properties> <!-- .mvn/config && versions.properties -->
+    <enceladus.delivery.demo.version>${project.version}</enceladus.delivery.demo.version>
+    <java.version>22</java.version>
+    <spring.boot.version>3.4.5</spring.boot.version>
+    <testcontainers.version>1.21.4</testcontainers.version>
+    <vaadin.version>24.7.6</vaadin.version>
+    <!--vaadin.version>25.3.3</vaadin.version-->
+    <spring-ai.version>2.0.1</spring-ai.version>
+    <springdoc.openapi.version>2.8.9</springdoc.openapi.version>
+  </properties>
+
+  <modules>
+    <module>enceladus-ai-demo-commons</module>
+    <module>enceladus-ai-demo-dashboard</module>
+    <module>enceladus-ai-demo-backend</module>
+    <module>enceladus-ai-demo-rag</module>
+	<!--module>enceladus-ai-demo-mcp-client</module>
+	<module>enceladus-ai-demo-mcp-server</module>
+	<module>enceladus-ai-demo-documents-ingest</module>
+	<module>enceladus-ai-demo-admin</module-->
+  </modules>
+
+
+  <!-- bill of materials -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons-lang3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring.boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.r2dbc</groupId>
+        <artifactId>r2dbc-h2</artifactId>
+        <version>${r2dbc-h2.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.vaadin</groupId>
+        <artifactId>vaadin-bom</artifactId>
+        <version>${vaadin.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-bom</artifactId>
+        <version>${springdoc.openapi.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>validate</id>
+              <phase>validate</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <configLocation>checkstyle/checkstyle.xml</configLocation>
+            <consoleOutput>true</consoleOutput>
+            <failsOnError>true</failsOnError>
+            <linkXRef>false</linkXRef>
+            <failsOnError>true</failsOnError>
+            <failOnViolation>true</failOnViolation>
+            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+            <outputFileFormat>plain</outputFileFormat>
+            <logViolationsToConsole>true</logViolationsToConsole>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <test>*Test,IntegrationTest*</test>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>properties-maven-plugin</artifactId>
+          <version>1.1.0</version>
+          <executions>
+            <execution>
+              <phase>initialize</phase>
+              <goals>
+                <goal>read-project-properties</goal>
+              </goals>
+              <configuration>
+                <files>
+                  <file>versions.properties</file>
+                </files>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
