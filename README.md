@@ -4,8 +4,7 @@ Callisto AI Gennie is a Java-based AI assistant demo for asking questions about 
 
 The active Maven modules are `commons`, `dashboard`, `backend`, and `rag`. The commented modules in the root POM mark planned Java work, including an MCP client and MCP server for connecting the assistant to external tools and context providers. Document-ingest and admin modules are also planned.
 
-[![Maven](https://github.com/sitarucorp/Callisto-ai-gennie/actions/workflows/maven.yml/badge.svg)](https://github.com/sitarucorp/Callisto-ai-gennie/actions/workflows/maven.yml)
-
+[![Maven](https://github.com/sitarucorp/enceladus-ai-gennie/actions/workflows/maven.yml/badge.svg)](https://github.com/sitarucorp/enceladus-ai-gennie/actions/workflows/maven.yml)
 ## Stack
 
 | Component   | Version / role                                       |
