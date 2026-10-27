@@ -324,7 +324,7 @@ http://localhost:8080/api/rag?question=What%20is%20capital%20of%20Aussi
 
 <p align="left">
   <img
-    src="Callisto-ai-demo-dashboard\src\main\resources\logo.png"
+    src="enceladus-ai-demo-dashboard\src\main\resources\logo.png"
     alt="Callisto"
     width="320"
   />
