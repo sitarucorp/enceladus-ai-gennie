@@ -1,7 +1,7 @@
-package com.gsmahajan.testbed.springairag.service;
+package com.enceladus.ai.gennie.rag.service;
 
 
-import com.gsmahajan.testbed.springairag.model.RagResponse;
+import com.enceladus.ai.gennie.rag.model.RagResponse;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;

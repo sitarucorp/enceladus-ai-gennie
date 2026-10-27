@@ -8,7 +8,6 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
-import com.vaadin.flow.component.dialog.DialogVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Main;
 import com.vaadin.flow.component.notification.Notification;
@@ -82,7 +81,7 @@ public class VersionView extends Main {
         dialog.setDraggable(true);
         dialog.setResizable(true);
         dialog.add(getVersionLayout(version));
-        dialog.addThemeVariants(DialogVariant.MATERIAL_NO_PADDING);
+        dialog.getElement().getThemeList().add("no-padding");
         dialog.open();
     }
 

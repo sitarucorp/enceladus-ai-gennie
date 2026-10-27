@@ -1,4 +1,4 @@
-package com.gsmahajan.testbed.springairag.model;
+package com.enceladus.ai.gennie.rag.model;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.enceladus.delivery.demo.commons.model.core;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class GreaterThanValidator implements ConstraintValidator<GreaterThan, Integer> {
     private int minValue;

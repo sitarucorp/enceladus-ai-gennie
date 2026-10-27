@@ -1,4 +1,4 @@
-package com.gsmahajan.testbed.springairag;
+package com.enceladus.ai.gennie.rag;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

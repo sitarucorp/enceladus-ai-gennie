@@ -1,4 +1,4 @@
-FROM maven:3-eclipse-temurin-22-alpine
+FROM maven:3-eclipse-temurin-25-alpine
 
 ENV TZ UTC
 ENV OTEL_VERSION=2.16.0

@@ -3,14 +3,14 @@ package com.enceladus.delivery.demo.backend.controller;
 import com.enceladus.delivery.demo.backend.service.TaskBackendService;
 import com.enceladus.delivery.demo.commons.model.core.Constants;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.Instant;
 
-@Ignore
+@Disabled
 @WebMvcTest(value = TaskReactiveController.class, properties = "version=v1")
 @AutoConfigureMockMvc
 @Slf4j

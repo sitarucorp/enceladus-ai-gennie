@@ -1,15 +1,13 @@
 package com.enceladus.delivery.demo.commons.commons;
 
 import com.enceladus.delivery.demo.commons.model.DashboardSideNavigationEnum;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.junit.jupiter.api.Test;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-public class VersionTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class VersionTest {
     @Test
-    public void sampleTest() {
-        Assert.assertEquals(6, DashboardSideNavigationEnum.values().length);
+    void sampleTest() {
+        assertEquals(7, DashboardSideNavigationEnum.values().length);
     }
 }

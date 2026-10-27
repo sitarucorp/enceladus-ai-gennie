@@ -1,7 +1,7 @@
-package com.gsmahajan.testbed.springairag.controller;
+package com.enceladus.ai.gennie.rag.controller;
 
-import com.gsmahajan.testbed.springairag.model.RagResponse;
-import com.gsmahajan.testbed.springairag.service.RagService;
+import com.enceladus.ai.gennie.rag.model.RagResponse;
+import com.enceladus.ai.gennie.rag.service.RagService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

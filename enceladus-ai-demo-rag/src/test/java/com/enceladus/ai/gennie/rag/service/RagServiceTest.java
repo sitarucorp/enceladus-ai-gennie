@@ -1,0 +1,56 @@
+package com.enceladus.ai.gennie.rag.service;
+
+import com.enceladus.ai.gennie.rag.model.RagResponse;
+import org.junit.jupiter.api.Test;
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.document.Document;
+import org.springframework.ai.vectorstore.SearchRequest;
+import org.springframework.ai.vectorstore.VectorStore;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+class RagServiceTest {
+
+    @Test
+    void asksWithRetrievedContextAndReturnsCleanedSourceText() {
+        VectorStore vectorStore = mock(VectorStore.class);
+        ChatClient.Builder chatClientBuilder = mock(ChatClient.Builder.class);
+        ChatClient chatClient = mock(ChatClient.class, RETURNS_DEEP_STUBS);
+        when(chatClientBuilder.build()).thenReturn(chatClient);
+        when(chatClient.prompt().system(anyString()).user(anyString()).call().content()).thenReturn("The answer.");
+
+        String longSource = "  Spring   Boot " + "x".repeat(520) + "  ";
+        when(vectorStore.similaritySearch(any(SearchRequest.class)))
+                .thenReturn(List.of(new Document(longSource)));
+
+        RagResponse response = new RagService(vectorStore, chatClientBuilder).ask("What is Spring Boot?");
+
+        assertEquals("What is Spring Boot?", response.question());
+        assertEquals("The answer.", response.answer());
+        assertEquals(1, response.sources().size());
+        assertEquals(503, response.sources().getFirst().content().length());
+        assertEquals("Spring Boot " + "x".repeat(488) + "...", response.sources().getFirst().content());
+    }
+
+    @Test
+    void returnsNoSourcesWhenRetrievalFindsNoDocuments() {
+        VectorStore vectorStore = mock(VectorStore.class);
+        ChatClient.Builder chatClientBuilder = mock(ChatClient.Builder.class);
+        ChatClient chatClient = mock(ChatClient.class, RETURNS_DEEP_STUBS);
+        when(chatClientBuilder.build()).thenReturn(chatClient);
+        when(chatClient.prompt().system(anyString()).user(anyString()).call().content()).thenReturn("No context.");
+        when(vectorStore.similaritySearch(any(SearchRequest.class))).thenReturn(List.of());
+
+        RagResponse response = new RagService(vectorStore, chatClientBuilder).ask("Unknown question");
+
+        assertEquals("No context.", response.answer());
+        assertEquals(List.of(), response.sources());
+    }
+}

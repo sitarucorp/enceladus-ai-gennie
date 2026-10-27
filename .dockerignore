@@ -1,0 +1,8 @@
+**/target
+.git
+.idea
+.vscode
+**/node_modules
+*.iml
+Thumbs.db
+.DS_Store
