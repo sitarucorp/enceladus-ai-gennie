@@ -10,7 +10,7 @@ The active Maven modules are `commons`, `dashboard`, `backend`, and `rag`. The c
 |-------------|------------------------------------------------------|
 | Java        | 25 LTS                                               |
 | Spring Boot | 4.0.9                                                |
-| Spring AI   | 2.0.1                                                |
+| Spring AI   | 2.0.2                                                |
 | Vaadin      | 25.0.0 (Boot 4.0 compatible line)                    |
 | Ollama      | Local model runtime; `llama3.2` is the chat model    |
 | Embeddings  | `nomic-embed-text` for document and question vectors |
@@ -88,6 +88,9 @@ When running RAG outside Docker, start PostgreSQL with pgvector and Ollama first
 ```powershell
 ollama pull llama3.2
 ollama pull nomic-embed-text
+
+docker run -d --name pgvector -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=ragdb -p 5432:5432 pgvector/pgvector:pg17
+
 ```
 
 The local RAG configuration defaults to PostgreSQL at `localhost:5432` and Ollama at `localhost:11434`; the Compose environment overrides those hostnames for container networking.
@@ -313,3 +316,27 @@ http://localhost:8080/api/rag?question=What%20is%20capital%20of%20Aussi
 ]
 }
 ```
+
+
+
+'########:'##::: ##::'######::'########:'##::::::::::'###::::'########::'##::::'##::'######::
+ ##.....:: ###:: ##:'##... ##: ##.....:: ##:::::::::'## ##::: ##.... ##: ##:::: ##:'##... ##:
+ ##::::::: ####: ##: ##:::..:: ##::::::: ##::::::::'##:. ##:: ##:::: ##: ##:::: ##: ##:::..::
+ ######::: ## ## ##: ##::::::: ######::: ##:::::::'##:::. ##: ##:::: ##: ##:::: ##:. ######::
+ ##...:::: ##. ####: ##::::::: ##...:::: ##::::::: #########: ##:::: ##: ##:::: ##::..... ##:
+ ##::::::: ##:. ###: ##::: ##: ##::::::: ##::::::: ##.... ##: ##:::: ##: ##:::: ##:'##::: ##:
+ ########: ##::. ##:. ######:: ########: ########: ##:::: ##: ########::. #######::. ######::
+........::..::::..:::......:::........::........::..:::::..::........::::.......::::......:::
+
+
+<p align="center">
+  <img
+    src="enceladus-ai-demo-dashboard\src\main\resources\logo.png"
+    alt="Enceladus"
+    width="320"
+  />
+</p>
+         '
+@ Enceladus AI Gennie 2026.
+
+Email: sitarucorp@gmail.com
