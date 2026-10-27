@@ -267,6 +267,7 @@ Or
 http://localhost:8080/api/rag?question=What%20is%20capital%20of%20USA
 
 Local LLM translates the USA to a United States country here.
+
 ```
 or
 ```bash
@@ -301,7 +302,9 @@ http://localhost:8080/api/rag?question=What%20is%20capital%20of%20Aussi
 }
 ```
 
-```gemma4 version
+
+#### gemma4 version
+```
 
 {
 
@@ -325,7 +328,7 @@ http://localhost:8080/api/rag?question=What%20is%20capital%20of%20Aussi
     width="320"
   />
 </p>
-         '
+
 &copy; Enceladus AI Gennie 2026.
 
 Email: sitarucorp@gmail.com
