@@ -1,8 +1,10 @@
-# Enceladus AI Gennie
+# Callisto AI Gennie
 
-Enceladus AI Gennie is a Java-based AI assistant demo for asking questions about documents. It combines a Spring Boot REST backend, a Vaadin dashboard, and a Spring AI retrieval augmented generation (RAG) service. The RAG service ingests PDF content, stores embeddings in PostgreSQL with pgvector, retrieves relevant passages, and asks Ollama to answer from that context.
+Callisto AI Gennie is a Java-based AI assistant demo for asking questions about documents. It combines a Spring Boot REST backend, a Vaadin dashboard, and a Spring AI retrieval augmented generation (RAG) service. The RAG service ingests PDF content, stores embeddings in PostgreSQL with pgvector, retrieves relevant passages, and asks Ollama to answer from that context.
 
 The active Maven modules are `commons`, `dashboard`, `backend`, and `rag`. The commented modules in the root POM mark planned Java work, including an MCP client and MCP server for connecting the assistant to external tools and context providers. Document-ingest and admin modules are also planned.
+
+[![Maven](https://github.com/sitarucorp/Callisto-ai-gennie/actions/workflows/maven.yml/badge.svg)](https://github.com/sitarucorp/Callisto-ai-gennie/actions/workflows/maven.yml)
 
 ## Stack
 
@@ -73,14 +75,14 @@ mvn -B verify
 
 JaCoCo writes an HTML and XML coverage report for each module under
 `<module>/target/site/jacoco/`. For example, open
-`enceladus-ai-demo-rag/target/site/jacoco/index.html` after the build.
+`Callisto-ai-demo-rag/target/site/jacoco/index.html` after the build.
 
 To run an individual service from the repository root:
 
 ```powershell
-mvn -pl enceladus-ai-demo-rag -am spring-boot:run
-mvn -pl enceladus-ai-demo-backend -am spring-boot:run
-mvn -pl enceladus-ai-demo-dashboard -am spring-boot:run
+mvn -pl Callisto-ai-demo-rag -am spring-boot:run
+mvn -pl Callisto-ai-demo-backend -am spring-boot:run
+mvn -pl Callisto-ai-demo-dashboard -am spring-boot:run
 ```
 
 When running RAG outside Docker, start PostgreSQL with pgvector and Ollama first, pull both configured models, then run the RAG module. For local Ollama model setup:
@@ -323,12 +325,12 @@ http://localhost:8080/api/rag?question=What%20is%20capital%20of%20Aussi
 
 <p align="left">
   <img
-    src="enceladus-ai-demo-dashboard\src\main\resources\logo.png"
-    alt="Enceladus"
+    src="Callisto-ai-demo-dashboard\src\main\resources\logo.png"
+    alt="Callisto"
     width="320"
   />
 </p>
 
-&copy; Enceladus AI Gennie 2026.
+&copy; Callisto's AI Gennie 2026.
 
 Email: sitarucorp@gmail.com
