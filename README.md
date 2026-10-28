@@ -391,8 +391,52 @@ http://localhost:8080/api/rag?question=What%20is%20capital%20of%20Aussi
 }
 ```
 
+#### Language detection part (lingua)
 
-#### gemma4 version
+```prototext
+"http://localhost:8080/api/rag?question=UK देशाची राजधानी कोणती ?"
+{
+        "question": "UK देशाची राजधानी कोणती ?",
+                "answer": "युनाईटेड किंग्डम च्या देशाची राजधानी लंडन आहे.",
+                "sources": [
+        {
+                "content": "No. Country Capital 1 India New Delhi 2 United States Washington, D.C. 3 United Kingdom London 4 France Paris 5 Japan Tokyo 6 Australia Canberra 7 Canada Otawa 8 China Beijing 9 Brazil Brasília 10 Germany Berlin"
+                }
+        ]
+        }
+OR
+"http://localhost:8080/api/rag?question=फ्रांस देशाची राजधानी कोणती आहे ?"
+{
+        "question": "फ्रांस देशाची राजधानी कोणती आहे ?",
+                "answer": "फ्रांस देशाची राजधानी पॅरिस आहे.",
+                "sources": [
+        {
+                "content": "No. Country Capital 1 India New Delhi 2 United States Washington, D.C. 3 United Kingdom London 4 France Paris 5 Japan Tokyo 6 Australia Canberra 7 Canada Otawa 8 China Beijing 9 Brazil Brasília 10 Germany Berlin"
+                }
+        ]
+        }
+```
+Hallacunation - (language translation time)
+```text
+"question=स्प्रिंग बूट म्हणजे काय ?"
+{"question":"स्प्रिंग बूट म्हणजे काय ?","answer":"The information is not available in the provided document.","sources":[{"content":"No. Country Capital 1 India New Delhi 2 United States Washington, D.C. 3 United Kingdom London 4 France Paris 5 Japan Tokyo 6 Australia Canberra 7 Canada Otawa 8 China Beijing 9 Brazil Brasília 10 Germany Berlin"}]}
+```
+
+But works well if a matching English keyword found to be matched to one of documents available (capital or spring boot introductions)
+```
+question=Spring बूट म्हणजे काय ?
+{
+"question": "Spring बूट म्हणजे काय ?",
+"answer": "स्प्रिंग बूट हे स्प्रिंग फ्रेमवर्कवर आधारित आहे जे प्रोडक्शन-रेडी जावा ऐप्लिकेशन बनवण्यात मदत करते.",
+"sources": [
+{
+"content": "Spring Boot Guide A practical reference document for the Spring AI RAG demonstration. 1. What is Spring Boot? Spring Boot is a framework built on top of the Spring Framework that makes it easier to create production-ready Java applications. It provides sensible defaults, automatic configuration, starter dependencies, and an embedded web server. A typical Spring Boot application can be started with a main class annotated with @SpringBootApplication. This annotation combines configuration, compone..."
+}
+]
+}
+```
+
+#### gemma4 model attempt
 ```
 
 {
