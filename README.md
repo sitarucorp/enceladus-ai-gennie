@@ -94,15 +94,16 @@ Local RAG configuration defaults to PostgreSQL at `localhost:5432` and Ollama at
 
 ## Stack
 
-| Component   | Version / role                                       |
-|-------------|------------------------------------------------------|
-| Java        | 25 LTS                                               |
-| Spring Boot | 4.0.9                                                |
-| Spring AI   | 2.0.2                                                |
-| Vaadin      | 25.0.0 (Boot 4.0 compatible line)                    |
-| Ollama      | Local model runtime; `llama3.2` is the chat model    |
-| Embeddings  | `nomic-embed-text` for document and question vectors |
-| PostgreSQL  | 17 with pgvector                                     |
+| Component  | Version / role                                       |
+|------------|------------------------------------------------------|
+| Java       | 25.0.3 LTS                                           |
+ | Maven     |  3.9.9                                               |
+| Spring Boot| 4.0.9                                                |
+| Spring AI  | 2.0.2                                                |
+| Vaadin     | 25.0.0 (Boot 4.0 compatible line)                    |
+| Ollama     | Local model runtime; `llama3.2` is the chat model    |
+| Embeddings | `nomic-embed-text` for document and question vectors |
+| PostgreSQL | 17 with pgvector                                     |
 
 `llama3.2` is the only chat model configured. RAG also needs an embedding model to index and search documents; `nomic-embed-text` is used only for embeddings, not chat responses.
 
