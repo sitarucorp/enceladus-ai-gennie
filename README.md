@@ -1,10 +1,96 @@
 # Enceladus AI Gennie
 
-Enceladus AI Gennie is a Java-based AI assistant demo for asking questions about documents. It combines a Spring Boot REST backend, a Vaadin dashboard, and a Spring AI retrieval augmented generation (RAG) service. The RAG service ingests PDF content, stores embeddings in PostgreSQL with pgvector, retrieves relevant passages, and asks Ollama to answer from that context.
+<p align="left">
+  <img src="enceladus-ai-demo-dashboard/src/main/resources/logo.png" alt="Enceladus AI Gennie" width="320" />
+</p>
 
-The active Maven modules are `commons`, `dashboard`, `backend`, and `rag`. The commented modules in the root POM mark planned Java work, including an MCP client and MCP server for connecting the assistant to external tools and context providers. Document-ingest and admin modules are also planned.
 
 [![Maven](https://github.com/sitarucorp/enceladus-ai-gennie/actions/workflows/maven.yml/badge.svg)](https://github.com/sitarucorp/enceladus-ai-gennie/actions/workflows/maven.yml)
+
+A Java 25, Spring Boot multi-module demo combining a Vaadin dashboard, a reactive task API, and a document question-answering service using Spring AI, Ollama, PostgreSQL, and pgvector.
+
+## Repository layout
+
+| Path | Purpose |
+|---|---|
+| `enceladus-ai-demo-commons/` | Shared API models, constants, and validation |
+| `enceladus-ai-demo-dashboard/` | Vaadin UI, dashboard services, and health indicators |
+| `enceladus-ai-demo-backend/` | Reactive task and version APIs, persistence, and API-key handling |
+| `enceladus-ai-demo-rag/` | RAG/chat APIs, PDF ingestion, retrieval, and Ollama integration |
+| `enceladus-demo-devops/` | Deployment, observability, and supporting scripts/configuration |
+| `.github/workflows/` | Maven CI workflow |
+
+The root Maven reactor currently builds the four `enceladus-ai-demo-*` modules. MCP client/server, document-ingest, and admin modules mentioned in the POM are commented out and are not part of the build. PDF startup ingestion currently lives in `enceladus-ai-demo-rag`; it is expected to move into the planned document-ingest module when that module is developed.
+
+## Runtime stack
+
+The versions are managed in the root `pom.xml` and module POMs: Java 25, Spring Boot 4.0.9, Spring AI 2.0.2, Vaadin 25.0.0, and JaCoCo 0.8.16. The RAG service uses Ollama `llama3.2` for chat and `nomic-embed-text` for embeddings; PostgreSQL 17 with pgvector stores vectors.
+
+## Run with Docker Compose
+
+Start the RAG service and its dependencies:
+
+```powershell
+docker compose up --build -d rag
+```
+
+Start the complete demo, including dashboard, backend, and Nginx:
+
+```powershell
+docker compose up --build -d
+```
+
+Compose downloads the configured Ollama models on first startup. Follow logs or stop the stack with:
+
+```powershell
+docker compose logs -f rag ollama pgvector
+docker compose down
+```
+
+The RAG API is available at `http://localhost:8080`:
+
+```text
+GET /api/rag?question=What%20is%20Spring%20Boot
+GET /api/chat?message=Summarize%20Spring%20Boot
+```
+
+## Build and test
+
+Use JDK 25 and Maven 3.9.9 or newer. Run the full reactor, unit tests, and module JaCoCo reports with:
+
+```powershell
+mvn -B verify
+```
+
+Open each module's `target/site/jacoco/index.html` for class and package details. The root build creates per-module reports, not a single cross-module aggregate. Check missed branches and missed instructions as well as the headline coverage percentage; generated code and untested classes can be hidden by a high aggregate line percentage. Run a single module and its reactor dependencies with, for example:
+
+```powershell
+mvn -pl enceladus-ai-demo-rag -am verify
+```
+
+Run the dashboard integration tests with `mvn -B -Pintegration-test verify`; these may require Docker for Testcontainers. Unit tests should not require live Ollama or PostgreSQL services.
+
+## Run an application locally
+
+Start the required dependencies first. For RAG, run PostgreSQL with pgvector and Ollama, then pull the two configured models:
+
+```powershell
+ollama pull llama3.2
+ollama pull nomic-embed-text
+docker run -d --name pgvector -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=ragdb -p 5432:5432 pgvector/pgvector:pg17
+```
+
+Then launch a module from the repository root:
+
+```powershell
+mvn -pl enceladus-ai-demo-rag -am spring-boot:run
+mvn -pl enceladus-ai-demo-backend -am spring-boot:run
+mvn -pl enceladus-ai-demo-dashboard -am spring-boot:run
+```
+
+Local RAG configuration defaults to PostgreSQL at `localhost:5432` and Ollama at `localhost:11434`; Compose configures container hostnames for service networking.
+
+## WIP
 
 ## Stack
 
@@ -323,14 +409,4 @@ http://localhost:8080/api/rag?question=What%20is%20capital%20of%20Aussi
 ```
 
 
-<p align="left">
-  <img
-    src="enceladus-ai-demo-dashboard\src\main\resources\logo.png"
-    alt="Enceladus"
-    width="320"
-  />
-</p>
-
-&copy; Enceladus AI Gennie 2026.
-
-Email: sitarucorp@gmail.com
+© Enceladus AI Gennie 2026

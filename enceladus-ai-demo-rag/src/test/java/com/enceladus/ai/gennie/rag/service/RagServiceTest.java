@@ -53,4 +53,19 @@ class RagServiceTest {
         assertEquals("No context.", response.answer());
         assertEquals(List.of(), response.sources());
     }
+
+    @Test
+    void returnsWhitespaceNormalizedSourceWhenItFitsWithinLimit() {
+        VectorStore vectorStore = mock(VectorStore.class);
+        ChatClient.Builder chatClientBuilder = mock(ChatClient.Builder.class);
+        ChatClient chatClient = mock(ChatClient.class, RETURNS_DEEP_STUBS);
+        when(chatClientBuilder.build()).thenReturn(chatClient);
+        when(chatClient.prompt().system(anyString()).user(anyString()).call().content()).thenReturn("Answer.");
+        when(vectorStore.similaritySearch(any(SearchRequest.class)))
+                .thenReturn(List.of(new Document("  short   source  ")));
+
+        RagResponse response = new RagService(vectorStore, chatClientBuilder).ask("Question");
+
+        assertEquals("short source", response.sources().getFirst().content());
+    }
 }
