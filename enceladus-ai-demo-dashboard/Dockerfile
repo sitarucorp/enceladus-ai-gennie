@@ -5,7 +5,7 @@ ENV OTEL_VERSION=2.16.0
 
 ADD . /app/
 WORKDIR /app
-RUN mvn clean package
+RUN mvn -B -DskipTests -Pproduction -pl enceladus-ai-demo-dashboard -am clean package
 
 # ADD https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v${OTEL_VERSION}/opentelemetry-javaagent.jar /app/opentelemetry-javaagent.jar
 
@@ -46,4 +46,4 @@ ENV JAVA_TOOL_OPTIONS="-XX:MaxRAM=512m -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX
 
 #CMD [ "-jar", "/apps/enceladus-ai-demo-dashboard-1.0-SNAPSHOT.jar" ]
 
-CMD [ "mvn", "-pl", "enceladus-ai-demo-dashboard", "-am", "spring-boot:run"]
+CMD [ "java", "-Dvaadin.frontend.hotdeploy=false", "-jar", "/app/enceladus-ai-demo-dashboard/target/enceladus-ai-demo-dashboard-1.0-SNAPSHOT.jar" ]

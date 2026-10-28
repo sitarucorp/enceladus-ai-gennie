@@ -2,6 +2,9 @@ package com.enceladus.ai.gennie.rag.service;
 
 
 import com.enceladus.ai.gennie.rag.model.RagResponse;
+import com.github.pemistahl.lingua.api.Language;
+import com.github.pemistahl.lingua.api.LanguageDetector;
+import com.github.pemistahl.lingua.api.LanguageDetectorBuilder;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
@@ -12,6 +15,9 @@ import java.util.List;
 
 @Service
 public class RagService {
+
+    private static final LanguageDetector LANGUAGE_DETECTOR =
+            LanguageDetectorBuilder.fromAllLanguages().build();
 
     private final VectorStore vectorStore;
     private final ChatClient chatClient;
@@ -26,10 +32,13 @@ public class RagService {
 
     public RagResponse ask(String question) {
 
-        // 1. Retrieve the most relevant chunks from PGVector
+        // 1. Search in English so queries match the English document embeddings.
+        String searchQuery = translateToEnglishWhenNeeded(question);
+
+        // 2. Retrieve the most relevant chunks from PGVector
         List<Document> documents = vectorStore.similaritySearch(
                 SearchRequest.builder()
-                        .query(question)
+                        .query(searchQuery)
                         .topK(1)
                         .build()
         );
@@ -39,7 +48,7 @@ public class RagService {
         System.out.println("RETRIEVED DOCUMENTS: " + documents.size());
         System.out.println("========================================");
 
-        // 2. Build the FULL context for the LLM
+        // 3. Build the FULL context for the LLM
         String context = documents.stream()
                 .map(Document::getText)
                 .reduce("", (a, b) -> a + "\n\n" + b);
@@ -48,7 +57,7 @@ public class RagService {
         System.out.println(context);
         System.out.println("========================================");
 
-        // 3. Ask the LLM using the retrieved context
+        // 4. Ask the LLM using the retrieved context and original question
         String answer = chatClient
                 .prompt()
                 .system("""
@@ -78,19 +87,35 @@ public class RagService {
                 .call()
                 .content();
 
-        // 4. Clean sources ONLY for the API response
+        // 5. Clean sources ONLY for the API response
         List<RagResponse.Source> sources = documents.stream()
                 .map(Document::getText)
                 .map(this::cleanSourceText)
                 .map(RagResponse.Source::new)
                 .toList();
 
-        // 5. Return the RAG response
+        // 6. Return the RAG response
         return new RagResponse(
                 question,
                 answer,
                 sources
         );
+    }
+
+    private String translateToEnglishWhenNeeded(String question) {
+        Language detectedLanguage = LANGUAGE_DETECTOR.detectLanguageOf(question);
+        if (detectedLanguage == Language.ENGLISH || detectedLanguage == Language.UNKNOWN) {
+            return question;
+        }
+
+        String translated = chatClient
+                .prompt()
+                .system("Translate the user's text into English. Return only the translation, with no explanation or quotation marks.")
+                .user(question)
+                .call()
+                .content();
+
+        return translated == null || translated.isBlank() ? question : translated.trim();
     }
 
     private String cleanSourceText(String text) {

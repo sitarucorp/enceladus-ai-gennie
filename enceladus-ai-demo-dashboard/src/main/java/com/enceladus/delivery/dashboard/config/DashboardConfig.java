@@ -2,8 +2,8 @@ package com.enceladus.delivery.dashboard.config;
 
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.component.page.Push;
+import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.shared.communication.PushMode;
-import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +18,8 @@ import java.time.Clock;
 @EnableAsync
 @EnableScheduling
 @Push(PushMode.AUTOMATIC)
-@Theme(variant = Lumo.LIGHT)
+@StyleSheet(Lumo.STYLESHEET)
+@StyleSheet(Lumo.UTILITY_STYLESHEET)
 public class DashboardConfig implements AppShellConfigurator {
 
     @Bean

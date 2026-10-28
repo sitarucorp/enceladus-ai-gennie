@@ -12,6 +12,9 @@
 	<artifactId>enceladus-ai-demo-rag</artifactId>
 
 	<name>enceladus-ai-demo-rag</name>
+	<properties>
+		<lingua.version>1.2.2</lingua.version>
+	</properties>
 	<description/>
 	<url/>
 	<licenses>
@@ -26,9 +29,12 @@
 		<tag/>
 		<url/>
 	</scm>
-	<properties>
-	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>com.github.pemistahl</groupId>
+			<artifactId>lingua</artifactId>
+			<version>${lingua.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webmvc</artifactId>
