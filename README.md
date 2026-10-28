@@ -1,11 +1,11 @@
 # Enceladus AI Gennie
 
-<p align="left">
-  <img src="enceladus-ai-demo-dashboard/src/main/resources/logo.png" alt="Enceladus AI Gennie" width="320" />
-</p>
-
 
 [![Maven](https://github.com/sitarucorp/enceladus-ai-gennie/actions/workflows/maven.yml/badge.svg)](https://github.com/sitarucorp/enceladus-ai-gennie/actions/workflows/maven.yml)
+
+Enceladus AI Gennie is a Java-based AI assistant demo for asking questions about documents. It combines a Spring Boot REST backend, a Vaadin dashboard, and a Spring AI retrieval augmented generation (RAG) service. The RAG service ingests PDF content, stores embeddings in PostgreSQL with pgvector, retrieves relevant passages, and asks Ollama to answer from that context.
+
+The active Maven modules are `commons`, `dashboard`, `backend`, and `rag`. The commented modules in the root POM mark planned Java work, including an MCP client and MCP server for connecting the assistant to external tools and context providers. Document-ingest and admin modules are also planned.
 
 A Java 25, Spring Boot multi-module demo combining a Vaadin dashboard, a reactive task API, and a document question-answering service using Spring AI, Ollama, PostgreSQL, and pgvector.
 
@@ -408,5 +408,8 @@ http://localhost:8080/api/rag?question=What%20is%20capital%20of%20Aussi
 }
 ```
 
+<p align="left">
+  <img src="enceladus-ai-demo-dashboard/src/main/resources/logo.png" alt="Enceladus AI Gennie" width="320" />
+</p>
 
 © Enceladus AI Gennie 2026
