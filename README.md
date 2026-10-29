@@ -20,9 +20,8 @@ A Java 25, Spring Boot multi-module demo combining a Vaadin dashboard, a reactiv
 | `enceladus-ai-demo-mcp-client/` | MCP client for tools with LLM ollama qwen2.5:3b connections and sse with mcp-servers                                                                  |
 | `enceladus-ai-demo-mcp-server/` | MCP server implementation connecting backend and provide crud tools for tasks, employees, inventories, clients, drawings, cad-blueprints, storage etc |
 | `enceladus-ai-demo-ascii-docs/` | Documentation to cover the implementation for CAD documents scanning and enterprise MCP usage on top of backend app                                   |
-
-| `enceladus-demo-devops/` | Deployment, observability, and supporting scripts/configuration |
-| `.github/workflows/` | Maven CI workflow |
+| `enceladus-demo-devops/`        | Deployment, observability, and supporting scripts/configuration                                                                                       |
+| `.github/workflows/`            | Maven CI workflow                                                                                                                                     |
 
 The root Maven reactor currently builds the four `enceladus-ai-demo-*` modules. MCP client/server, document-ingest, and admin modules mentioned in the POM are commented out and are not part of the build. PDF startup ingestion currently lives in `enceladus-ai-demo-rag`; it is expected to move into the planned document-ingest module when that module is developed.
 
