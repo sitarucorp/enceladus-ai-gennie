@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: spring-ai-rag
+    name: enceladus-ai-demo-documents-ingestion
 
   datasource:
     url: jdbc:postgresql://localhost:5432/ragdb

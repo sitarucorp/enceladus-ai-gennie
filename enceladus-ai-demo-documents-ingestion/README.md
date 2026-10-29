@@ -1,17 +1,15 @@
-# RAG service
+# Documents ingestion service
 
-This module provides the document question-answering API. It ingests the bundled PDF guides, creates embeddings, stores them in PostgreSQL with pgvector, retrieves relevant passages for each question, and asks Ollama to answer from those passages.
+This module loads the bundled PDF guides, creates embeddings, and stores them in PostgreSQL with pgvector. It runs as a one-shot preload job before the RAG API starts.
 
-PDF startup ingestion currently runs from this module's `DataLoader` configuration. The root README tracks the planned move to a future document-ingest module.
-
-The configured chat model is `llama3.2`; `nomic-embed-text` is used separately for embeddings.
+The configured embedding model is `nomic-embed-text`.
 
 ## Run with Docker Compose
 
 From the repository root:
 
 ```powershell
-docker compose up --build -d rag
+docker compose up --build -d documents-ingestion
 ```
 
 ## API examples

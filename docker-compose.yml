@@ -53,6 +53,7 @@ services:
     restart: "no"
 
   rag:
+    image: enceladus-ai-demo-rag:local
     build:
       context: .
       dockerfile: enceladus-ai-demo-rag/Dockerfile
@@ -68,8 +69,25 @@ services:
     depends_on:
       pgvector:
         condition: service_healthy
+      documents-ingestion:
+        condition: service_completed_successfully
+
+  documents-ingestion:
+    image: enceladus-ai-demo-documents-ingestion:local
+    build:
+      context: .
+      dockerfile: enceladus-ai-demo-documents-ingestion/Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://pgvector:5432/ragdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_AI_OLLAMA_BASE_URL: http://ollama:11434
+    depends_on:
+      pgvector:
+        condition: service_healthy
       ollama-model-init:
         condition: service_completed_successfully
+    restart: "no"
 
   dashboard:
     build:

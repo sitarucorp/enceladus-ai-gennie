@@ -3,9 +3,9 @@
 
 [![Maven](https://github.com/sitarucorp/enceladus-ai-gennie/actions/workflows/maven.yml/badge.svg)](https://github.com/sitarucorp/enceladus-ai-gennie/actions/workflows/maven.yml)
 
-Enceladus AI Gennie is a Java-based AI assistant demo for asking questions about documents. It combines a Spring Boot REST backend, a Vaadin dashboard, and a Spring AI retrieval augmented generation (RAG) service. The RAG service ingests PDF content, stores embeddings in PostgreSQL with pgvector, retrieves relevant passages, and asks Ollama to answer from that context.
+Enceladus AI Gennie is a Java-based AI assistant demo for asking questions about documents. It combines a Spring Boot REST backend, a Vaadin dashboard, and a Spring AI retrieval augmented generation (RAG) service. A separate documents-ingestion service preloads PDF content into PostgreSQL with pgvector; the RAG service retrieves relevant passages and asks Ollama to answer from that context.
 
-The active Maven modules are `commons`, `dashboard`, `backend`, and `rag`. The commented modules in the root POM mark planned Java work, including an MCP client and MCP server for connecting the assistant to external tools and context providers. Document-ingest and admin modules are also planned.
+The active Maven modules include `commons`, `dashboard`, `backend`, `rag`, MCP client/server, and documents-ingestion. The commented modules in the root POM mark planned Java work, including admin and configuration services.
 
 A Java 25, Spring Boot multi-module demo combining a Vaadin dashboard, a reactive task API, and a document question-answering service using Spring AI, Ollama, PostgreSQL, and pgvector.
 
@@ -16,14 +16,15 @@ A Java 25, Spring Boot multi-module demo combining a Vaadin dashboard, a reactiv
 | `enceladus-ai-demo-commons/`    | Shared API models, constants, and validation                      |
 | `enceladus-ai-demo-dashboard/`  | Vaadin dashboard and health indicators                            |
 | `enceladus-ai-demo-backend/`    | Reactive task and version APIs, persistence, and API-key handling |
-| `enceladus-ai-demo-rag/`        | RAG and chat APIs, PDF ingestion, and Ollama integration          |
+| `enceladus-ai-demo-rag/`        | RAG and chat APIs, and Ollama integration                         |
+| `enceladus-ai-demo-documents-ingestion/` | One-shot PDF ingestion and pgvector preload                  |
 | `enceladus-ai-demo-mcp-client/` | MCP client for Ollama tools and server-sent events                |
 | `enceladus-ai-demo-mcp-server/` | MCP tools for backend task, employee, inventory, drawing etc      |
 | `enceladus-ai-demo-ascii-docs/` | CAD scanning and enterprise MCP documentation                     |
 | `enceladus-demo-devops/`        | Deployment, monitoring, and supporting scripts                    |
 | `.github/workflows/`            | Maven CI workflow                                                 |
 
-The Maven reactor currently builds four modules. The MCP client/server, document-ingest, and admin modules listed in the POM are commented out. PDF startup ingestion is in `enceladus-ai-demo-rag` and is planned to move to the document-ingest module.
+The Maven reactor builds the API, UI, backend, RAG, MCP, and documents-ingestion modules. Docker Compose starts PostgreSQL and Ollama, loads the required Ollama models, runs `documents-ingestion` to completion, and then starts `rag`.
 
 ## Runtime stack
 

@@ -12,10 +12,6 @@
 	<artifactId>enceladus-ai-demo-documents-ingestion</artifactId>
 
 	<name>enceladus-ai-demo-documents-ingestion</name>
-	<properties>
-		<lingua.version>1.2.2</lingua.version>
-	</properties>
-
 	<description/>
 	<url/>
 	<licenses>
@@ -31,15 +27,6 @@
 		<url/>
 	</scm>
 	<dependencies>
-		<dependency>
-			<groupId>com.github.pemistahl</groupId>
-			<artifactId>lingua</artifactId>
-			<version>${lingua.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webmvc</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-starter-model-ollama</artifactId>

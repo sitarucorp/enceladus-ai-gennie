@@ -6,6 +6,7 @@ RUN mvn -B -pl enceladus-ai-demo-documents-ingestion -am -DskipTests package
 
 FROM eclipse-temurin:25-jre-alpine
 
+LABEL org.opencontainers.image.title="enceladus-ai-demo-documents-ingestion"
 ENV TZ UTC
 ENV OTEL_VERSION=2.16.0
 ENV PORT=8080
