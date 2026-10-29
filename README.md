@@ -11,15 +11,15 @@ A Java 25, Spring Boot multi-module demo combining a Vaadin dashboard, a reactiv
 
 ## Repository layout
 
-| Path | Purpose |
-|---|---|
-| `enceladus-ai-demo-commons/` | Shared API models, constants, and validation |
-| `enceladus-ai-demo-dashboard/` | Vaadin UI, dashboard services, and health indicators |
-| `enceladus-ai-demo-backend/` | Reactive task and version APIs, persistence, and API-key handling |
-| `enceladus-ai-demo-rag/` | RAG/chat APIs, PDF ingestion, retrieval, and Ollama integration |
-| `enceladus-ai-demo-mcp-client/` | MCP client for tools with LLM ollama qwen2.5:3b connections and sse with mcp-servers|
-| `enceladus-ai-demo-mcp-server/` | MCP server implementation connecting backend and provide crud tools for tasks, employees, inventories, clients, drawings, cad-blueprints, storage etc|
-| `enceladus-ai-demo-ascii-docs/` | Documentation to cover the implementation for CAD documents scanning and enterprise MCP usage on top of backend app |
+| Path                            | Purpose                                                                                                                                               |
+|---------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `enceladus-ai-demo-commons/`    | Shared API models, constants, and validation                                                                                                          |
+| `enceladus-ai-demo-dashboard/`  | Vaadin UI, dashboard services, and health indicators                                                                                                  |
+| `enceladus-ai-demo-backend/`    | Reactive task and version APIs, persistence, and API-key handling                                                                                     |
+| `enceladus-ai-demo-rag/`        | RAG/chat APIs, PDF ingestion, retrieval, and Ollama integration                                                                                       |
+| `enceladus-ai-demo-mcp-client/` | MCP client for tools with LLM ollama qwen2.5:3b connections and sse with mcp-servers                                                                  |
+| `enceladus-ai-demo-mcp-server/` | MCP server implementation connecting backend and provide crud tools for tasks, employees, inventories, clients, drawings, cad-blueprints, storage etc |
+| `enceladus-ai-demo-ascii-docs/` | Documentation to cover the implementation for CAD documents scanning and enterprise MCP usage on top of backend app                                   |
 
 | `enceladus-demo-devops/` | Deployment, observability, and supporting scripts/configuration |
 | `.github/workflows/` | Maven CI workflow |
