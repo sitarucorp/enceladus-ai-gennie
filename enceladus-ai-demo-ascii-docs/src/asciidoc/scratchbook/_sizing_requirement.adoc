@@ -1,0 +1,54 @@
+
+=== instance to be under test
+
+|[code,java]
+----
+giris@Tornado MINGW64 /g/workspace/mphasis-demo/mphasis-pricing-app (main)
+$ cd mphasis-pricing-calculations/src/test/resources/
+
+giris@Tornado MINGW64 /g/workspace/mphasis-demo/mphasis-pricing-app/mphasis-pricing-calculations/src/test/resources (main)
+$ ./generate_csv.sh
+Generating dummy transactions record
+CSV generated successfully with transactions 200 is available at ./csvdata/cccpricing-cccpricing-user1-98b5ec5d-b89e-4e4f-57f7-2ac8e45eaa33.csv with size 21k ./csvdata/cccpricing-cccpricing-user1-98b5ec5d-b89e-4e4f-57f7-2ac8e45eaa33.csv bytes
+CSV generated successfully with transactions 200 is available at ./csvdata/cccpricing-cccpricing-user2-57a15441-1d98-b514-14a4-c514ac92d52a.csv with size 21k ./csvdata/cccpricing-cccpricing-user2-57a15441-1d98-b514-14a4-c514ac92d52a.csv bytes
+CSV generated successfully with transactions 200 is available at ./csvdata/cccpricing-cccpricing-user3-4b76db75-4020-da32-996d-b57be293c0a6.csv with size 21k ./csvdata/cccpricing-cccpricing-user3-4b76db75-4020-da32-996d-b57be293c0a6.csv bytes
+----
+
+[columns="5*", options=header]
+|===
+| Instance type | CPU | RAM | Storage | Tested
+| m6i.2xlarge   | 8   | 32  | EBS     m| No
+|===
+
+=== volume-to-sizing projection
+[columns="11*", options="header"]
+|===
+| Average transactions per card ☑ | Number of card holders ☑ | total transactions volume ☑ | ~ storage need? (csv 150kb/user) In GiB | Average user batch per workload (job/pod) ☑ | ☑ Pods per Node (linear akahorizontal) X | ☑ No. of Nodes (vertical) Y | ☑ card-holders per node | CPU core per node | Memory | Time Took |
+| 1K | 10K | 10M | < 1 | 500 | 10 | 1 | 10K | | 2 | 2 Gb | < 10 ms
+| 1K | 10K | 10M | < 1 | 500 | 10 | 1 | 10K | | 2 | 2 Gb |
+| 1K | 10K | 10M | < 1 | 500 | 10 | 1 | 10K | | 2 | 2 Gb |
+| 1K | 1M | 100M | 2 | 500 | 10 | 1 | 1M | | 2 | 2 Gb |
+| 1K | 2M | 200M | 4.0 | 500 | 10 | 1 | 2M | | 2 | 2 Gb |
+| 1K | 5M | 5B | 8 | 500 | 10 | 1 | 5M | | 2 | 2 Gb |
+| 1K | 10M | 10B | 16 | 500 | 10 | 2 | 5M | | 2 | 2 Gb |
+| 1K | 20M | 20B | 32 | 500 | 10 | 4 | 5M | | 2 | 2 Gb |
+| 1K | 20M | 20B | 32 | 500 | 10 | 4 | 5M | | 4 | 2 Gb |
+| 1K | 20M | 20B | 32 | 500 | 10 | 4 | 5M | | 4 | 2 Gb |
+| 1K | 20M | 20B | 32 | 500 | 10 | 4 | 5M | | 4 | 2 Gb |
+| 2K | 25M | 50B | 100 | 500 | 10 | 4 | 5M | | 8 | 2 Gb |
+|===
+
+=== Projection
+[columns="11*", options=header]
+|===
+| Txns/card | Cardholders | Total Txns | EFS/S3 Storage | Users/Pod | Pods Needed | Pods/Node | Nodes Needed | Cardholders/Node | CPU/Node | RAM/Node
+| 1K | 10K | 10M | 1.43 GiB | 500 | 20 | 8 | 3 | 3333 | 4 | 2 GB
+| 1K | 100K | 100M | 14.31 GiB | 500 | 200 | 8 | 25 | 4000 | 4 | 2 GB
+| 1K | 1M | 1B | 143.05 GiB | 500 | 2000 | 8 | 250 | 4000 | 4 | 2 GB
+| 1K | 2M | 2B | 286.1 GiB | 1000 | 2000 | 16 | 125 | 16000 | 8 | 4 GB
+| 1K | 5M | 5B | 715.26 GiB | 1000 | 5000 | 16 | 313 | 15974 | 8 | 4 GB
+| 1K | 10M | 10B | 1.5 TiB | 5000 | 2000 | 16 | 125 | 80000 | 16 | 4 GB
+| 1K | 20M | 20B | 3 TiB | 5000 | 4000 | 16 | 200 | 80000 | 16 | 4 GB
+| 2K | 25M | 50B | 5 TiB | 5000 | 5000 | 16 | 250 | 79872 | 16 | 4 GB
+
+|===

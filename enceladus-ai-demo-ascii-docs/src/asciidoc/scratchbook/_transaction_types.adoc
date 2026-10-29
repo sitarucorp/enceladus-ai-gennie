@@ -1,0 +1,14 @@
+[cols="3*",options="header"]
+|===
+| Transaction | Annual Percentage Rates (Example) | Description
+
+m|*PurchaseSwipe*| 18.75  | Use card swipe to purchase
+m|PurchaseOnline| 18.75 | Use card details to purchase online
+m|PurchaseSwipeOffer| {adhoc}  | Card swipe to purchase at departmental store
+m|PurchaseOnlineOffer | {adhoc} | Use card details for Online transaction with offerm
+m|MyCardLoan| 21.67   | Card Loan (cash credited to self account)
+m|BalanceTransfer| 22.75   | Use balance transfer feature
+m|CashAdvances| 28.75   | Use card to withdraw cash
+m|PayOverTimeEquatedMonthlyInstallments| {adhoc} | Use card to do purchase over EMI
+m|ForeignPurchaseTransaction| 29.75   | Foreign transaction usage
+|===

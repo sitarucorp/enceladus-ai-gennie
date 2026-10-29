@@ -1,0 +1,197 @@
+==== JVM Flags (observation) - WIP
+
+[WARNING]
+Use this to limit vm starts with 2 cpu core only -XX:+UseContainerSupport -XX:ActiveProcessorCount=2
+
+[source,java]
+----
+import java.math.BigDecimal;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.concurrent.*;
+
+public class Main {
+public static void main(String[] args) throws InterruptedException {
+int availableProcessors = Runtime.getRuntime().availableProcessors();
+System.out.println("Available processors (cores): " + availableProcessors);
+
+        int threadCount = 1_000_000;
+        System.out.println("Launching " + threadCount + " virtual threads...");
+
+        ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
+
+        CountDownLatch latch = new CountDownLatch(threadCount);
+        Instant start = Instant.now();
+
+        for (int i = 0; i < threadCount; i++) {
+            executor.execute(() -> {
+                // Simulate a CPU-bound task
+                BigDecimal swipe = new BigDecimal("110.00");
+                BigDecimal apr = new BigDecimal("0.2167"); // 10%
+                BigDecimal interest = swipe.multiply(apr);
+                BigDecimal outstandingAmount = swipe.add(interest);
+
+                if (ThreadLocalRandom.current().nextInt(1_000_000) < 3) {
+                    System.out.printf("Outstanding: $%.2f%n", outstandingAmount);
+                }
+
+                latch.countDown();
+            });
+        }
+
+        latch.await(); // wait for all threads to finish
+        executor.close();
+
+        Instant end = Instant.now();
+        Duration duration = Duration.between(start, end);
+
+        System.out.println("All tasks completed.");
+        System.out.println("Total time taken: " + duration.toMillis() + " ms");
+    }
+}
+----
+
+[source,shell]
+----
+FROM eclipse-temurin:21-jdk
+
+WORKDIR /app
+
+COPY Main.java .
+RUN javac Main.java
+
+ENV JAVA_TOOL_OPTIONS="-XX:+UseContainerSupport -XX:ActiveProcessorCount=4"
+
+ENTRYPOINT [ \
+  "java", \
+  "-Xmx512m", \
+  "-Xms128m", \
+  "-Xss256k", \
+  "-XX:+HeapDumpOnOutOfMemoryError", \
+  "-Dfile.encoding=UTF-8", \
+  "-XX:MaxMetaspaceSize=128m", \
+  "-XX:MinHeapFreeRatio=20", \
+  "-XX:MaxHeapFreeRatio=40", \
+  "-XX:MaxGCPauseMillis=200", \
+  "-XX:G1HeapRegionSize=8m", \
+  "-XX:+PrintFlagsFinal" \
+]
+
+CMD ["-server", "Main"]
+----
+
+|===
+|JVM Flag| Memory and heap sizing
+
+m|-XX:+UseG1GC                           | Default in Java 21, good for large heaps
+m|-XX:MaxHeapFreeRatio=20               | Reduce free heap overhead
+m|-XX:MinHeapFreeRatio=5                | Shrink heap aggressively under low usage
+m|-XX:+AlwaysPreTouch                   | Prefault memory pages to reduce latency
+m|-XX:+UseStringDeduplication           | Useful if many duplicate strings
+|===
+
+|===
+|GC tuning for throughput|Description
+
+m|-XX:+ParallelRefProcEnabled           | Parallel reference processing
+m|-XX:MaxGCPauseMillis=200              | Reasonable pause goal, doesn’t sacrifice throughput
+m|-XX:+UnlockDiagnosticVMOptions        | --
+m|-XX:+G1UseAdaptiveIHOP                | Let G1 decide Initiating Heap Occupancy percentage
+m|-XX:G1ReservePercent=10               | GC reserve buffer
+|===
+
+|===
+| Virtual threads + container-aware | Description
+
+m|-XX:+UseContainerSupport | Detect container limits
+m|-XX:ActiveProcessorCount=4| Force 4-core behavior (when local host has more)
+|===
+
+|===
+|Optional diagnostics
+
+m|-XX:+PrintFlagsFinal (Optional)
+m|-Xlog:gc*:file=/tmp/gc.log:time,uptime,level,tags
+|===
+
+Observations:-
+
+[source,bash]
+Available processors (cores): 4
+Launching 100 virtual threads..
+
+[CAUTION]
+In case if a java profiler is not available ? How do we get the jvm insights (nb class loaded, metaspace consumption etc), our strategy ?
+
+Let's monitor sample java statistics :- (G1GC)
+[source,shell]
+----
+#!/bin/bash
+
+# Usage: ./jvm_monitor.sh <pid> [interval] [count]
+# Example: ./jvm_monitor.sh 1234 1 10
+
+PID="$1"
+INTERVAL="${2:-1}" # seconds
+COUNT="${3:-30}"
+
+if [[ -z "$PID" ]]; then
+  echo "Usage: $0 <pid> [interval] [count]"
+  exit 1
+fi
+
+echo "Monitoring JVM PID $PID every ${INTERVAL}s for $COUNT iterations..."
+echo
+
+echo "Legend:"
+echo "S0/S1    Survivor spaces"
+echo "E        Eden"
+echo "O        Old"
+echo "M        Metaspace"
+echo "YGC/YGCT Young GC count/time"
+echo "FGC/FGCT Full GC count/time"
+echo "TT      Total GC time"
+echo
+
+jstat -gc "$PID" "$INTERVAL" "$COUNT"
+----
+
+[NOTE]
+Command to get the metrics (eg): jstat
+[source,bash]
+----
+$ jstat -gc "$PID" "$INTERVAL" "$COUNT" | awk 'NR>1 { print strftime("%Y-%m-%d %H:%M:%S"), ",", $0 }' > jvm_metrics.csv
+----
+OR ->
+
+[source,bash]
+----
+
+watch ./jvm_monitor.sh 1 1 1
+----
+
+Example readings :-
+
+```# ./jvm_monitor.sh 1 1 1
+Monitoring JVM PID 1 every 1s for 1 iterations...
+
+Legend:
+S0/S1    Survivor spaces
+E        Eden
+O        Old
+M        Metaspace
+YGC/YGCT Young GC count/time
+FGC/FGCT Full GC count/time
+TT      Total GC time
+
+Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:ActiveProcessorCount=16
+    S0C         S1C         S0U         S1U          EC           EU           OC           OU          MC         MU       CCSC      CCSU     YGC     YGCT     FGC    FGCT     CGC    CGCT       GCT
+        0.0         0.0         0.0         0.0      16384.0          0.0     114688.0          0.0        0.0        0.0       0.0       0.0      0     0.000     0     0.000     0     0.000     0.000
+```
+
+```bash
+Available processors (cores): 16
+Launching 100 virtual threads...
+All tasks completed.
+Total time taken: 300004 ms
+```

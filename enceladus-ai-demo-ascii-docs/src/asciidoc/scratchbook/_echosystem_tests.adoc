@@ -1,0 +1,31 @@
+Comprises following approaches :
+
+. Card Ecosystem Tests - Arches then Devs
+. Unit Tests coverage - Devs
+. Integration Tests (non-amplified) - Devs
+. Integration Tests (amplified) - Devs
+. Environment Shakeout Tests (A team of engineers look for  real-cloud transportation with keys/secrets)
+. QA Tests suite (A team of engineers that look for unseen edges and compliance's not to be breaches alongside product managers or owners / stakeholders )
+. Documentation Tests
+
+=== Unit Tests coverage
+TIP: Java code coverage , jacoco, is an inbuilt functionality for maven build that generates reports for tests coverage
+
+JaCoCo reports to be above 90% minimum benchmark for dependency jar libs and 75% benchmarks for services / endpoints / apps including mvc-tests
+
+=== Integration-Tests (non-amplified)
+IMPORTANT: Basic SpringBootTests with Mocks handler wherever necessary.
+
+
+=== Integration-Tests (amplified)
+CAUTION: depends majorly on allowing to use be able to use testcontainers during CI phase?
+
+=== Product shakeout (real environment tests)
+WARNING: This showcases our strategy on how do we certify with readonly observations on the environment (qa/staging/production) by shaking out the environment with few probes (jmx / health-checks on passive ports, observability /traceability of sample operation say calling a /version etc)
+
+=== Card Ecosystem Tests
+This section would describe the generation of n users with multiple cards plan and provides source for resilience tests to be carried out on top of it, eg showcasing mcp capability with avaiable data points (number of cards active daily, card trends etc. )
+
+TIP: this entirely uses the csv files set base on predefined folder structure and the MCP is exposed only to that set of reality. rather the actual datastore (db / keystore etc.)
+
+=== Documentation Tests ?

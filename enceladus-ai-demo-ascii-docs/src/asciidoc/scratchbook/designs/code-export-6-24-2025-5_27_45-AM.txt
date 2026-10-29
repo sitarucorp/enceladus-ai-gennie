@@ -1,0 +1,184 @@
+// title
+title Financial Platform Data Model.io Financial Platform Data Model
+
+// define tables
+plan_users [icon: user, color: yellow]{
+  id string pk
+  creation_date date
+  user_id string
+  plan_id string
+  card_id string
+  extraInfo1 string
+  extraInfo2 string
+  extraInfo3 string
+  extraInfo4 string
+  extraInfo5 string
+}
+
+transactions [icon: credit-card, color: orange]{
+  id string pk
+  user_id string
+  txnId string
+  txnDate date
+  txnEpoch int
+  amount float
+  mode string
+  apr_rate float
+  plan_id string
+}
+
+annual_percentage_rate [icon: percent, color: green]{
+  id string pk
+  mode string
+  plan_id string
+  apr_rate float
+}
+
+statements [icon: file-text, color: blue]{
+  id string pk
+  total_amount_due float
+  minimum_amount_due float
+  billing_cycle_from date
+  billing_cycle_to date
+  billing_cycle_id string
+  payment_id string
+}
+
+settlements [icon: check-circle, color: teal]{
+  id string pk
+  statement_id string
+  payment_id string
+  billing_cycle_id string
+  card_state string
+  creation_date date
+}
+
+authorizations [icon: shield, color: purple]{
+  id string pk
+  user_id string
+  card_state string
+  plan_id string
+  mode string
+  status string
+  creation_date date
+}
+
+activities [icon: activity, color: pink]{
+  id string pk
+  user_id string
+  activity string
+  mode string
+  creation_date date
+}
+
+plans [icon: layers, color: cyan]{
+  id string pk
+  product_name string
+  apr_rate float
+}
+
+user_plans [icon: users, color: lightblue]{
+  id string pk
+  user_id string
+  plan_id string
+  card_id string
+  ccc_state_id string
+}
+
+billing_cylces [icon: calendar, color: indigo]{
+  id string pk
+  user_id string
+  plan_id string
+  from_date date
+  to_date date
+  month int
+  year int
+  grace_days int
+  invoice_id string
+}
+
+invoices [icon: file, color: gray]{
+  id string pk
+  user_id string
+  plan_id string
+  statement_id string
+  invoice_sent bool
+  bill_date date
+  bill_sent_date date
+  creation_date date
+}
+
+payments [icon: dollar-sign, color: green]{
+  id string pk
+  user_id string
+  billing_cycle_id string
+  settlement_id string
+  status string
+  current_outstanding float
+}
+
+outstandings [icon: trending-up, color: red]{
+  id string pk
+  total_outstanding float
+  current_amount_due float
+  minimum_amount_due float
+}
+
+cards [icon: credit-card, color: violet]{
+  id string pk
+  user_id string
+  ccc_state_id string
+}
+
+ccc_state [icon: alert-circle, color: brown]{
+  id string pk
+  cccid string
+  user_id string
+  state string
+}
+
+// define relationships
+plan_users.user_id > user_plans.user_id
+plan_users.plan_id > plans.id
+plan_users.card_id > cards.id
+
+transactions.user_id > user_plans.user_id
+transactions.plan_id > plans.id
+
+annual_percentage_rate.plan_id > plans.id
+
+statements.billing_cycle_id > billing_cylces.id
+statements.payment_id > payments.id
+
+settlements.statement_id > statements.id
+settlements.payment_id > payments.id
+settlements.billing_cycle_id > billing_cylces.id
+
+authorizations.user_id > user_plans.user_id
+authorizations.plan_id > plans.id
+
+activities.user_id > user_plans.user_id
+
+user_plans.plan_id > plans.id
+user_plans.card_id > cards.id
+user_plans.ccc_state_id > ccc_state.id
+
+billing_cylces.user_id > user_plans.user_id
+billing_cylces.plan_id > plans.id
+billing_cylces.invoice_id > invoices.id
+
+invoices.user_id > user_plans.user_id
+invoices.plan_id > plans.id
+invoices.statement_id > statements.id
+
+payments.user_id > user_plans.user_id
+payments.billing_cycle_id > billing_cylces.id
+payments.settlement_id > settlements.id
+
+cards.user_id > user_plans.user_id
+cards.ccc_state_id > ccc_state.id
+
+ccc_state.user_id > user_plans.user_id
+
+// Note: outstandings is not directly linked in the schema, but could be related to user or statement in a real system.
+

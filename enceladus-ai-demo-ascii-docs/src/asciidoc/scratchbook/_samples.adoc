@@ -1,0 +1,48 @@
+=== Sampling data set
+Quick Test: (interest rates are one-to-one link with transaction)
+[source,java]
+----
+    @Order(3)
+    @Test
+    @DisplayName("""
+            3. Calculate accurate total amount due as 207.00 when three transactions passed
+            with 100.50 & 99.50 & 200 having variable apr as 3.5, 12 and 27.90
+            """)
+    void shouldCalculateTotalAmountDueCorrectlyWithVariableApr() {
+        Transaction one = Transaction.builder().transactionId("testId1").transactionDate(Instant.now())
+                .amount(new BigDecimal("100.50")).aprRate(new BigDecimal("3.5"))
+                .userId("FOOOOOO1234").type("SWIPE").build();
+
+        Transaction two = Transaction.builder().transactionId("testId2").transactionDate(Instant.now())
+                .amount(new BigDecimal("99.50")).aprRate(new BigDecimal("12.00"))
+                .userId("FOOOOOO1234").type("ONLINE").build();
+
+        Transaction three = Transaction.builder().transactionId("testId3").transactionDate(Instant.now())
+                .amount(new BigDecimal("200.00")).aprRate(new BigDecimal("27.90"))
+                .userId("FOOOOOO1234").type("CASH").build();
+
+        BigDecimal result = TransactionProcessor.calculateTotalDue(List.of(one,two,three));
+        BigDecimal minimumDue = TransactionProcessor.calculateMinimumDue(List.of(one,two,three));
+
+        assertEquals("471.26", result.toString());
+        assertEquals("23.5630", minimumDue.toString()); // 5% Hard coded (?) to the logic for all plan
+    }
+----
+
+
+[CAUTION]
+This can other way around be changed to fixed APR for fixed category of transactions. (Here product/plan specific rates need to think)
+Product/Plan basis Fixed APR for variety of types of transactions. (EMI/ONLINE/SWIPE/OFFER/CARDLOAN/CASH etc)
+
+```java
+private static BigDecimal resolveInterestRate(String type) { // stick to the app in general ? or stick with the transaction?
+        // ?? check BehaviourTransactionRates.java & AnnualPercentageRate do we need
+        return switch (type.toUpperCase()) {
+            case "SWIPE" -> BigDecimal.valueOf(1.5);
+            case "ONLINE" -> BigDecimal.valueOf(2.0);
+            case "CASH" -> BigDecimal.valueOf(3.0);
+            case "EMI" -> BigDecimal.valueOf(1.0);
+            default -> throw new IllegalArgumentException("Unknown transaction type: " + type);
+        };
+    }
+```

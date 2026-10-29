@@ -17,6 +17,7 @@
   <packaging>pom</packaging>
 
   <properties> <!-- .mvn/config && versions.properties -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <enceladus.delivery.demo.version>${project.version}</enceladus.delivery.demo.version>
     <java.version>25</java.version>
     <spring.boot.version>4.0.9</spring.boot.version>
@@ -33,12 +34,12 @@
     <module>enceladus-ai-demo-dashboard</module>
     <module>enceladus-ai-demo-backend</module>
     <module>enceladus-ai-demo-rag</module>
-	<!--module>enceladus-ai-demo-mcp-client</module>
+	<module>enceladus-ai-demo-mcp-client</module>
 	<module>enceladus-ai-demo-mcp-server</module>
-	<module>enceladus-ai-demo-documents-ingest</module>
+	<!--module>enceladus-ai-demo-documents-ingest</module>
 	<module>enceladus-ai-demo-admin</module>
-	<module>enceladus-ai-demo-config-server</module>
-    <module>enceladus-ai-demo-ascii-docs</module-->
+	<module>enceladus-ai-demo-config-server</module-->
+    <module>enceladus-ai-demo-ascii-docs</module>
   </modules>
 
 
@@ -62,6 +63,15 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
+      <dependency>
+        <groupId>org.springframework.ai</groupId>
+        <artifactId>spring-ai-bom</artifactId>
+        <version>${spring-ai.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
       <dependency>
         <groupId>io.r2dbc</groupId>
         <artifactId>r2dbc-h2</artifactId>

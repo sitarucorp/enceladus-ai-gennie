@@ -23,7 +23,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 @Route(value = "", layout = MainLayout.class)
 @PermitAll // When security is enabled, allow all authenticated users
-@PageTitle("Delivery Console | Home")
+@PageTitle("Intelligence Console | Home")
 public final class MainView extends Main {
 
     VersionService versionService;

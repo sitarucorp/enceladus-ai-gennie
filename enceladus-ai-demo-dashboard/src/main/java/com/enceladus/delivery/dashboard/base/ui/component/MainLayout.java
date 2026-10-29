@@ -38,7 +38,7 @@ public final class MainLayout extends AppLayout {
         var appLogo = VaadinIcon.COFFEE.create();
         appLogo.addClassNames(TextColor.PRIMARY, IconSize.LARGE);
 
-        var appName = new Span("Delivery Console");
+        var appName = new Span("Intelligence Console");
         appName.addClassNames(FontWeight.SEMIBOLD, FontSize.LARGE);
 
         var header = new Div(appLogo, appName);

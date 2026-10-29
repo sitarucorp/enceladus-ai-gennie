@@ -1,0 +1,8 @@
+[cols="2*", options="header"]
+|===
+| Legend | Description
+m| ACTIVE | Card is in active state
+m| BLOCKED  | Card is in blocked state
+m| EXPIRED | Card has been expired
+m| YET_TO_BE_USE | Card is dispatched but yet to be use
+|===

@@ -1,0 +1,43 @@
+=== Our Questions or Assumptions
+
+> Modernization ? - Thoughts collected
+
+[square]
+. What is in-general understanding of modernizing an application?
+
+.. Primarily using Java 21 virtual threads / records / reactors / non-blocking r2dbc repositories / async operations for optimized virtual-threads usage etc / class-data-sharing / fine-tuned metaspace / container support enabled jvms / async with completable futures / spring boot 3 java-apps / quarkus edges for batch job/ traceable microservices based wirings etc
+
+.. Containerization or Virtualization using kubernetes ? (linear aka horizontal or vertical auto-scaling replicas), choice of flexible deployment computes (kubernetes job/ or workloads) on to AWS EKS or VPC backed single EC2 instance. Multi-region etc
+
+.. Idempotence with kafka / aws sns for event-driven ?
+
+.. Modern CI/CD practices (having pipelines / extra checks / perf test etc pierced within CI itself). ArgoCD or code-deploy pipeline for staging the deployments. a must-have
+
+.. Observability (tracing + wealthy logging + alerts + workflow based topologies for event driven etc) or it is just a cloud-watch level of viewing resources.
+
+.. Modern java test-coverage with test-containers ? Test everything local.
+
+.. Realtime Event driven auditing or having a traceable workflow auditing, reporting & data-breach(es), events to sink to kafka otherwise (jaeger / grafana for local)
+
+.. Observability Modernization (health-checks / readiness / liveliness / tracing enabled with AWS managed grafana / prometheus) ?
+.. Fine-tune JVM for standalone workloads.
+.. Use of strict avro records disciplines for kafka producers/consumers.
+.. Documentations with asciidoc / mkdocs / openapi etc.
+.. Infra driven based on terraform with helm chart versioning (disaster recovery for SLA)? => DevOps
+..  [line-through]<s> Do we also have a team for dashboard ? Use of modern reactive web-frameworks like react-js or vaadin for example?</s>
+.. Are we considering any of promotional campaign or rewards hub or cards_home type of dashboards with it?
+
+.. Feature like cards trends (display top trending card based on day-to-day observable usage)
+
+.. Important, AI ? Do we intend to use own MCP server based tooling (either customer-centric or business facing) on top of controllers exposed endpoints or data lake to use AI based on promotions or CFP generation, reporting, auditing etc.
+e.g. internal business centric prompt:
+i) How many card-holders on average do the payment on time before due date in last 6 months ?
+ii) Explain latest java pricing audit report ?
+iii) How many cards lost in last billing cycle ?
+iv) How many new card-holders onboarded on pricing modernization since feature inception?
+
+.. Atlassian Trello kanban based on call supports.
+.. Working with text secrets smartly (production secrets stays with one personnel (& team) only, keep devs away, and leave data with Data Officer and DBA's)
+
+
+More questions...

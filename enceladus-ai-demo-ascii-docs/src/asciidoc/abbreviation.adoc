@@ -1,0 +1,19 @@
+=== Terminology
+
+[columns="3*",options="header"]
+|===
+| Abbreviation | Full form | Description
+m| C3 (CCC) | Chase Credit card | C3 Systems
+m| CP | Card Pricing | Methodology in which the card pricing is being recognized and applied for specific account
+m| CAM | Card Account Management | Foreign system that securely storing card account information
+m| CAF | Card Authorization Flow | Card Authentication Service
+m| CPM | Card Pricing Modernization initiative | Card Pricing Flow
+m| CFP | Card Finance Transaction Processing | Settlement Flow
+m| CLM | Credit Line Management | Credit Line Flow / Cash Lane Management
+m| PR | Prime Rate | Base rate on which APR is added
+m| APR | Annual Percentage Rate | Rate at which the card outstanding is charged
+m| PT | Pricing Terms | Can be any of Late Fees, Special Offer, Grace Period etc.
+m| CB | Credit Bureau Agencies | Credit agencies like CIBIL, Equifax, Experian & TransUnion etc.
+m| CPOT Fee | Card Pay Over Time Fees | EMI over card with or without interest.
+m| ARB | Architectural Review Board | Practice for signing off business specific approver required for architectural decisions.
+|===

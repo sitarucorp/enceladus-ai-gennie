@@ -1,0 +1,13 @@
+==== Card Products (Plans)
+
+[columns="2*", options="header"]
+|===
+| Name | Default Annual Percentage Rate
+|PLATINUM|18.75
+|GOLD|18.75
+|PRESIDENTIAL|18.75
+|PRECIOUS|18.75
+|CORAL|18.75
+|EXPRESS|18.75
+|SAPPHIRE|18.75
+|===

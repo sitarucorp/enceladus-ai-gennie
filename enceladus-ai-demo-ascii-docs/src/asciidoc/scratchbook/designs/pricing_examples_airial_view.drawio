@@ -1,0 +1,98 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" version="27.1.6">
+  <diagram name="Page-1" id="-wnTFHRce8e9rL1lAewl">
+    <mxGraphModel dx="1025" dy="531" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ESfFOKWjejH50q1xoodD-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="750" y="60" width="110" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-2" value="Local Development (Java - Thinking all Observability - Tracing from workflows standpoint - Cloud Enablers)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="70" y="30" width="590" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="ESfFOKWjejH50q1xoodD-4" target="ESfFOKWjejH50q1xoodD-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-4" value="Fake&lt;br&gt;MainFrame Modernization (script)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="98" width="77" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ESfFOKWjejH50q1xoodD-6" target="ESfFOKWjejH50q1xoodD-8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="477" y="162" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-6" value="kafka-streams connect publisher&lt;br&gt;(kill switch)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="247" y="132" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ESfFOKWjejH50q1xoodD-8" target="ESfFOKWjejH50q1xoodD-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="170" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="730" y="162" />
+              <mxPoint x="730" y="162" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-8" value="Pricing Java apps examples&lt;br&gt;&lt;br&gt;/transactions&lt;br&gt;/billing/history&lt;br&gt;/workflows, /workloads,&lt;br&gt;/authorization,&lt;br&gt;/settlements,&lt;br&gt;/payments,&lt;br&gt;/statements,&lt;br&gt;/products&lt;br&gt;&lt;br&gt;docker-compose services" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="66" width="150" height="193" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-9" value="aws-sqs" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="765" y="78" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-10" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="467" y="432" as="sourcePoint" />
+            <mxPoint x="470" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-11" value="Developer Machine (Module Lead Level) - Always one step (version) ahead of how PM sees thing in the cloud&lt;br&gt;&lt;br&gt;cloud enablers making sure all virtual threads / non-blocking / completable futures / async / event driven&amp;nbsp;&lt;br&gt;all thinking test containers before the pre-release to real cloud" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="177" y="460" width="610" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ESfFOKWjejH50q1xoodD-12" target="ESfFOKWjejH50q1xoodD-9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="795" y="250" />
+              <mxPoint x="840" y="250" />
+              <mxPoint x="840" y="93" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-12" value="aws-sns" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="765" y="200" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-13" value="components when deployed on aws cloud would look like" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="600" y="390" width="330" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ESfFOKWjejH50q1xoodD-14" target="ESfFOKWjejH50q1xoodD-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-14" value="aws-s3" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="765" y="132" width="60" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.02;entryY=0.665;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" target="ESfFOKWjejH50q1xoodD-8" source="ESfFOKWjejH50q1xoodD-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="247" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-16" value="postgres&lt;br&gt;container" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="557.5" y="310" width="75" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-17" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="ESfFOKWjejH50q1xoodD-16" target="ESfFOKWjejH50q1xoodD-8">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="470" y="250" as="sourcePoint" />
+            <mxPoint x="520" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=-0.01;entryY=0.119;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="ESfFOKWjejH50q1xoodD-8" target="ESfFOKWjejH50q1xoodD-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-19" value="localstack" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="765" y="270" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ESfFOKWjejH50q1xoodD-22" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Aierial View - Pricing - Java / AWS Modernization&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="269" y="560" width="410" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

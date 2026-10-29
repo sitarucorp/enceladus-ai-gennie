@@ -1,0 +1,104 @@
+== Modernization Strategy
+:revealjs_theme: white
+:revealjs_slideNumber: true
+:revealjs_hash: true
+:revealjs_transition: slide
+:icons: font
+:source-highlighter: rouge
+:revealjs_width: 1280
+:revealjs_height: 720
+:revealjs_controls: true
+:revealjs_progress: true
+
+=== Welcome
+
+> Modernization isn't a finish line — it's a discipline to keep systems lean, observable, and intelligent in the face of ever-changing user, business, and tech expectations.”
+
+=== What do you mean by Modernization?
+* A Never-ending process
+* Contextual — differs across teams, products
+* Goal: Resilient, maintainable, observable, (and intelligent systems)
+
+=== In-general Practices
+==== Language & Framework Modernization
+* Java 21:
+** Records, Virtual Threads
+** Structured Concurrency, CDS
+* Reactive Programming:
+** Spring Boot 3 with R2DBC, Project Reactor, Postgres (Managed RDS) based apps
+** CompletableFuture for async workflows
+* Quarkus cncf graalvm native for edge/batch workloads
+* gRPC for microservices auditing or authentication of (system-user)
+* GraphQL based service for registry and complete exposure including billing history or payment history or authentication history (combining all schema exposed)
+
+==== Infrastructure Modernization
+* JVM Tuning:
+** Class-data sharing, metaspace optimization
+* Containerization:
+** Docker + Localstack + Kubernetes (horizontal/vertical scaling)
+** EKS vs EC2 trade-offs
+* Deployment Units:
+** Kubernetes Jobs, Workloads, Multi-region Support
+
+==== CI/CD & DevOps
+* GitOps and Pipelines:
+** ArgoCD, GitHub Actions, AWS CodeDeploy
+* Built-in Checks:
+** Perf Tests, Lint, Audit Hooks in CI
+* Infra as Code:
+** Terraform + Helm + Rollback support
+* Observability Dashboards / CloudWatch etc
+
+==== Observability & Monitoring
+* Metrics, Tracing, Logging:
+** Prometheus, Grafana, CloudWatch, Jaeger
+* Readiness / Liveness Probes
+* Workflow-based Topologies
+* Alerting and Dashboards
+
+==== Event-Driven Systems
+* Kafka + Avro schema
+* Idempotency in producers/consumers
+* SNS/SQS/EventBridge for async design
+* Audit/Event Sink to Kafka
+
+==== Test & Documentation
+* Modern Java Test Practices:
+** Testcontainers for local isolation tests
+* Documentation:
+** OpenAPI, AsciiDoc and Markdowns
+* Local-first Testing for fast feedback (testcontainers)
+
+==== Security & Governance
+* Secrets Handling:
+** Smart access patterns, least-privilege
+** Devs stay abstracted, Data officer & DBAs own data
+* Auditing:
+** Real-time event trails, breach reporting
+* Regulatory-Ready Traces
+* Compliance Guidelines (incorporated)
+
+==== Intelligence & AI
+* Business-centric Prompt Use Cases:
+** "How many cardholders paid on time?"
+** "Explain latest c3 pricing modernization audit report"
+** "Number of card loss in last months reported?"
+** "Which card product plan is in trending?"
+* MCP-powered internal AI tools based on spring-ai (In house)
+* Real-time promotional campaign insights (non-seo)
+
+==== Culture, Tools, and Open Questions
+* Trello / Kanban for on-call tracking (on call shifts)
+* Training Squad (cross-team)
+* Reactive Dashboards: Vaadin (paid), ReactJS
+* Card Promotion/Card Rewards Points web-portals (Frond-end teams ?)
+* Questions still asking...
+
+==== Closing: The Modernization Charter
+* Build for:
+** Reliability
+** Observability
+** Adaptability
+** Intelligence
+* Modernization is a mindset, not a milestone
+* Let’s begin where we are, with what we have

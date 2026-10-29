@@ -8,16 +8,16 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BackendDocumentationConfig {
-    @Value("${_DASHBOARD_API_VERSION:unknown}")
+    @Value("${_DASHBOARD_API_VERSION:v1}")
     private String version;
 
     @Bean
     public OpenAPI openAPI() {
         return new OpenAPI()
-                .info(new Info().title("Mphasis Demo Backend Application | Delivery Console")
-                        .title("Delivery Console")
+                .info(new Info().title("Enceladus AI Gennie | Intelligence Console")
+                        .title("Intelligence Console")
                         .version(version)
-                        .summary("CSP dashboard | Delivery Console | M-Phasis | Z2lyaXNoLm1haGFqYW5AbXBoYXNpcy5jb20K")
-                        .description("Java Spring Boot Microservices Backend with dashboard"));
+                        .summary("Enceladus AI | Gennie | Intelligence Console | Z2lyaXNoLm1haGFqYW5AbXBoYXNpcy5jb20K")
+                        .description("Enceladus AI | Gennie | Intelligence Console for scanning blueprints & computer aided designs with audit review"));
     }
 }
