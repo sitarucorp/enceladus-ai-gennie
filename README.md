@@ -11,17 +11,17 @@ A Java 25, Spring Boot multi-module demo combining a Vaadin dashboard, a reactiv
 
 ## Repository layout
 
-| Path                            | Purpose                                                                                                                                               |
-|---------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `enceladus-ai-demo-commons/`    | Shared API models, constants, and validation                                      |
-| `enceladus-ai-demo-dashboard/`  | Vaadin dashboard and health indicators                                            |
-| `enceladus-ai-demo-backend/`    | Reactive task and version APIs, persistence, and API-key handling                 |
-| `enceladus-ai-demo-rag/`        | RAG and chat APIs, PDF ingestion, and Ollama integration                           |
-| `enceladus-ai-demo-mcp-client/` | MCP client for Ollama tools and server-sent events                                 |
-| `enceladus-ai-demo-mcp-server/` | MCP tools for backend task, employee, inventory, client, drawing, and storage data |
-| `enceladus-ai-demo-ascii-docs/` | CAD scanning and enterprise MCP documentation                                      |
-| `enceladus-demo-devops/`        | Deployment, monitoring, and supporting scripts                                    |
-| `.github/workflows/`            | Maven CI workflow                                                                  |
+| Path                            | Purpose                                                           |
+|---------------------------------|-------------------------------------------------------------------|
+| `enceladus-ai-demo-commons/`    | Shared API models, constants, and validation                      |
+| `enceladus-ai-demo-dashboard/`  | Vaadin dashboard and health indicators                            |
+| `enceladus-ai-demo-backend/`    | Reactive task and version APIs, persistence, and API-key handling |
+| `enceladus-ai-demo-rag/`        | RAG and chat APIs, PDF ingestion, and Ollama integration          |
+| `enceladus-ai-demo-mcp-client/` | MCP client for Ollama tools and server-sent events                |
+| `enceladus-ai-demo-mcp-server/` | MCP tools for backend task, employee, inventory, drawing etc      |
+| `enceladus-ai-demo-ascii-docs/` | CAD scanning and enterprise MCP documentation                     |
+| `enceladus-demo-devops/`        | Deployment, monitoring, and supporting scripts                    |
+| `.github/workflows/`            | Maven CI workflow                                                 |
 
 The Maven reactor currently builds four modules. The MCP client/server, document-ingest, and admin modules listed in the POM are commented out. PDF startup ingestion is in `enceladus-ai-demo-rag` and is planned to move to the document-ingest module.
 
