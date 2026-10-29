@@ -38,8 +38,7 @@
 	<module>enceladus-ai-demo-mcp-server</module>
 	<module>enceladus-ai-demo-documents-ingestion</module>
     <module>enceladus-ai-demo-ascii-docs</module>
-    <!--module>enceladus-ai-demo-admin</module>
-	<module>enceladus-ai-demo-config-server</module-->
+    <!--module>enceladus-ai-demo-admin</module-->
   </modules>
 
 
