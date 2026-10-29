@@ -1,4 +1,4 @@
-package com.enceladus.ai.gennie.rag;
+package com.enceladus.ai.gennie.ingestions;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

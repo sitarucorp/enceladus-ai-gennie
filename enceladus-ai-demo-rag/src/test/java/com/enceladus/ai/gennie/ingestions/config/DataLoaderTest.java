@@ -1,6 +1,6 @@
-package com.enceladus.ai.gennie.rag.config;
+package com.enceladus.ai.gennie.ingestions.config;
 
-import com.enceladus.ai.gennie.rag.service.DocumentIngestionService;
+import com.enceladus.ai.gennie.ingestions.service.DocumentIngestionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.CommandLineRunner;
 

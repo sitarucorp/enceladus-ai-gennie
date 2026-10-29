@@ -1,7 +1,7 @@
-package com.enceladus.ai.gennie.rag.controller;
+package com.enceladus.ai.gennie.ingestions.controller;
 
-import com.enceladus.ai.gennie.rag.model.RagResponse;
-import com.enceladus.ai.gennie.rag.service.RagService;
+import com.enceladus.ai.gennie.ingestions.model.RagResponse;
+import com.enceladus.ai.gennie.ingestions.service.RagService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

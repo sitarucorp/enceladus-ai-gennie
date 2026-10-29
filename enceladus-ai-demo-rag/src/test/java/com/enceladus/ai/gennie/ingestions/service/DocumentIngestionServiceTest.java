@@ -1,6 +1,6 @@
-package com.enceladus.ai.gennie.rag.service;
+package com.enceladus.ai.gennie.ingestions.service;
 
-import com.enceladus.ai.gennie.rag.config.DataLoader;
+import com.enceladus.ai.gennie.ingestions.config.DataLoader;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.ai.document.Document;

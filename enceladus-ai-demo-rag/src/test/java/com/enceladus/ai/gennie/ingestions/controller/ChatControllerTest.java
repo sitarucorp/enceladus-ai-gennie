@@ -1,4 +1,4 @@
-package com.enceladus.ai.gennie.rag.controller;
+package com.enceladus.ai.gennie.ingestions.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.ai.chat.client.ChatClient;

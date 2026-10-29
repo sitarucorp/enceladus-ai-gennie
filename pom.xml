@@ -36,10 +36,10 @@
     <module>enceladus-ai-demo-rag</module>
 	<module>enceladus-ai-demo-mcp-client</module>
 	<module>enceladus-ai-demo-mcp-server</module>
-	<!--module>enceladus-ai-demo-documents-ingest</module>
-	<module>enceladus-ai-demo-admin</module>
-	<module>enceladus-ai-demo-config-server</module-->
+	<module>enceladus-ai-demo-documents-ingestion</module>
     <module>enceladus-ai-demo-ascii-docs</module>
+    <!--module>enceladus-ai-demo-admin</module>
+	<module>enceladus-ai-demo-config-server</module-->
   </modules>
 
 

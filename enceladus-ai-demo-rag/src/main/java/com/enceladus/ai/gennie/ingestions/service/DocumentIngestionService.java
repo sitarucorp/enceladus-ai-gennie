@@ -1,4 +1,4 @@
-package com.enceladus.ai.gennie.rag.service;
+package com.enceladus.ai.gennie.ingestions.service;
 
 
 import org.springframework.ai.document.Document;

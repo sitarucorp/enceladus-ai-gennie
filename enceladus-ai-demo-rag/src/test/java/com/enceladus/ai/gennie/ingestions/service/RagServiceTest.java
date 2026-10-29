@@ -1,6 +1,6 @@
-package com.enceladus.ai.gennie.rag.service;
+package com.enceladus.ai.gennie.ingestions.service;
 
-import com.enceladus.ai.gennie.rag.model.RagResponse;
+import com.enceladus.ai.gennie.ingestions.model.RagResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

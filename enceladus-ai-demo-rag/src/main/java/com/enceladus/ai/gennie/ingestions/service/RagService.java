@@ -1,7 +1,7 @@
-package com.enceladus.ai.gennie.rag.service;
+package com.enceladus.ai.gennie.ingestions.service;
 
 
-import com.enceladus.ai.gennie.rag.model.RagResponse;
+import com.enceladus.ai.gennie.ingestions.model.RagResponse;
 import com.github.pemistahl.lingua.api.Language;
 import com.github.pemistahl.lingua.api.LanguageDetector;
 import com.github.pemistahl.lingua.api.LanguageDetectorBuilder;

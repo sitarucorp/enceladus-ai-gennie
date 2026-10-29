@@ -1,4 +1,4 @@
-package com.enceladus.ai.gennie.rag.controller;
+package com.enceladus.ai.gennie.ingestions.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Autowired;

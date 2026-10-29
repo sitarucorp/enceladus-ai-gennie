@@ -1,4 +1,4 @@
-package com.enceladus.ai.gennie.rag.model;
+package com.enceladus.ai.gennie.ingestions.model;
 
 import java.util.List;
 
